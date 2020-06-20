@@ -36,7 +36,7 @@ router.post("/",[
            errors:errors.array()
         })
      }
- 
+     
     const {
         first_name,
         last_name,
@@ -47,14 +47,17 @@ router.post("/",[
         highest_eduction,
         category,
         monthly_fee,
-        tag,
+        tags,
         date,
         bio
 
     } = req.body
     
+   
+
 
     let user;
+   
  
     try {
        user=await User.findOne({email})
@@ -73,6 +76,7 @@ router.post("/",[
           }),
           { forceHttps: true }
        );
+       
  
         user = new User({
           first_name,
@@ -85,7 +89,7 @@ router.post("/",[
           highest_eduction,
           category,
           monthly_fee,
-          tag,
+          tags,
           date,
           bio
 
