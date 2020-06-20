@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const users = require("./routers/api/mentee/users");
-const mentorUser = require('./routers/api/mentor/mentorUser')
+const mentorUser = require('./routers/api/mentor/mentor')
 
 
 const app = express();
@@ -29,7 +29,8 @@ mongoose
 
 // Use Routes
 app.use("/api/users", users);
-app.use("/api/mentor",mentorUser)
+app.use("/api/mentor",mentorUser);
+app.use("/api/auth",require('./routers/api/mentor/auth'));
 
 
 const port = process.env.PORT || 5000;
