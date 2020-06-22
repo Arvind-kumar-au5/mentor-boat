@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useState} from'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Link} from "react-router-dom"
+import {Link,Redirect} from "react-router-dom"
+
+// Redux 
+import {connect} from "react-redux"
+import { login } from '../../actions/auth';
 
 function Copyright() {
   return (
@@ -47,8 +51,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+function SignIn({login,isAuthenticated}) {
   const classes = useStyles();
+
+  // Hooks 
+  const [formData, setformData] = useState({
+    email:'',
+    password:''
+  })
+
+  const {email,password} = formData
+
+  // OnChnage 
+  const onChnage = (e)=>{
+    setformData({...formData,[e.target.name]:e.target.value})
+  }
+
+  // Onsubmit 
+
+  const onSubmit = (e)=>{
+    e.preventDefault()
+    login(email,password)
+  }
+
+  // Authenticated 
+  if (isAuthenticated){
+      return <Redirect to="/dashboard"/>
+  }
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,7 +90,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign In as a mentee
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit= {onSubmit}>
          
           <TextField
             variant = "outlined"
@@ -71,6 +101,8 @@ export default function SignIn() {
             label="email;"
             type="email"
             id="email"
+            value = {email}
+            onChange = {onChnage}
           />
           <TextField
             variant = "outlined"
@@ -81,6 +113,8 @@ export default function SignIn() {
             label="password;"
             type="password"
             id="password"
+            value = {password}
+            onChange = {onChnage}
           />
          
           <FormControlLabel
@@ -119,3 +153,18 @@ export default function SignIn() {
     </Container>
   );
 }
+
+SignIn.propTypes = {
+  
+  login:PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.object.isRequired,
+
+};
+
+const mapStateToProps = state =>({
+  isAuthenticated:state.register.isAuthenticated
+})
+
+
+
+export default connect(mapStateToProps,{login}) (SignIn);

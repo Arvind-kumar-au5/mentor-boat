@@ -28,7 +28,8 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
-app.use("/api/users", users);
+app.use('/api/user',users)
+app.use('/api/auth',require('./routers/api/mentee/auth'))
 app.use("/api/mentor",mentorUser);
 app.use("/api/auth",require('./routers/api/mentor/auth'));
 

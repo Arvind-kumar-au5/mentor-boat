@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react'
-import {Link} from "react-router-dom"
-// import PropTypes from 'prop-types'
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
- const Landing=()=> {
+import React, {  } from 'react'
+import {Link,Redirect} from "react-router-dom"
+import {connect} from "react-redux"
+import PropTypes from 'prop-types'
+
+ const Landing=({isAuthenticated})=> {
+    if(isAuthenticated) {
+      return <Redirect to = "/dashboard" />
+
+    }
     return (
-        <section className='landing'>
+    <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
           <h1 className='x-large'>Mentor Boat</h1>
@@ -23,10 +27,15 @@ import Button from '@material-ui/core/Button';
     )
 }
 
-// Landing.propTypes = {
+Landing.propTypes = {
+     isAuthenticated:PropTypes.bool,
 
-// }
+}
 
-export default Landing
+const mapsStateToProps = state =>({
+  isAuthenticated:state.register.isAuthenticated
+})
+
+export default connect(mapsStateToProps)(Landing)
 
 

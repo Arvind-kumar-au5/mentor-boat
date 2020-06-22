@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +14,7 @@ import {Link} from "react-router-dom"
 import {setValidation} from "../../actions/validation"
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {register} from "../../actions/auth"
 
 // function Google() {
 //   return (
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn= ({setValidation})=> {
+const SignUp= ({setValidation,register})=> {
   const classes = useStyles();
 
   const [formData,setForm] = useState({
@@ -64,12 +64,17 @@ const SignIn= ({setValidation})=> {
   // submit data
   const onSubmit = async(e) =>{
     e.preventDefault()
-    if(password ==! password2){
-    setValidation('Password not match','danger')
+    console.log(password2,password)
+    if(password !== password2){
+    setValidation('Password not match','error')
+    }
+    else{
+      register({name,email,password})
+
     }
   }
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -112,6 +117,8 @@ const SignIn= ({setValidation})=> {
             label="password;"
             type="password"
             id="password"
+            value={password}
+            onChange={onChange}
           />
           <TextField
             variant = "outlined"
@@ -160,9 +167,12 @@ const SignIn= ({setValidation})=> {
   );
 }
 
-SignIn.propTypes = {
+SignUp.propTypes = {
   setValidation: PropTypes.func.isRequired,
+  register:PropTypes.func.isRequired,
 
 };
 
-export default connect(null,{setValidation}) (SignIn)
+
+
+export default connect(null,{setValidation,register}) (SignUp)
