@@ -10,14 +10,14 @@ import PropTypes from 'prop-types'
     }
     return (
     <section className='landing'>
-      <div className='dark-overlay'>
+      <div className=''>
         <div className='landing-inner'>
           <h1 className='x-large'>Mentor Boat</h1>
           <div className='buttons'>
-            <Link to='/search' className='btn btn-primary'>
+            <Link to='/mentor/find' className='btn btn-primary'>
               Find Mentor
             </Link>
-            <Link to='/mentor/apply' className='btn btn-light'>
+            <Link to='/mentor' className='btn btn-light'>
               Become a mentor
             </Link>
           </div>

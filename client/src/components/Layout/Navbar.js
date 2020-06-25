@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom"
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PropTypes from 'prop-types';
 import {logout} from "../../actions/auth"
 import Avatar from '@material-ui/core/Avatar';
@@ -31,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ButtonAppBar({register:{isAuthenticated,loading,user},logout,}) {
+function Navbar({register:{isAuthenticated,loading,user},logout}) {
+  console.log(isAuthenticated,loading)
   const classes = useStyles();
   
   const [anchorEl, setAnchorEl] = useState(null);
@@ -72,16 +72,14 @@ const authLinks = (
               MenuListProps={{ onMouseLeave: handleClose }}
             >
               <MenuItem onClick={handleClose}>
-                <Link to="/mentee/profile">
+                <Link style={{ color: 'black' }}  to="/mentee/profile">
                     Profile
                 </Link>
-                
                 </MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
               <MenuItem onClick={handleClose}>
-                <a onClick={logout} href='/login'>
+                <a onClick={logout} href='/login' style={{ color: 'black' }} >
                     
-                    <span className='hide-sm'>Logout</span>
+                    Logout
                 </a>
               </MenuItem>
             </Menu>
@@ -92,11 +90,36 @@ const authLinks = (
 
   const guestLinks = (
     <div>
-        <Button color="inherit">
-            <Link to = '/mentors'>  
-              Jee/Gate
-            </Link>
-        </Button>
+      
+          <Button color="inherit"
+            aria-owns={anchorEl ? 'simple-menu' : null}
+            aria-haspopup="true"
+            onClick={handleClick}
+            onMouseOver={handleClick}
+          >
+               <Link to="/mentor">Find mentor</Link> 
+                <KeyboardArrowDownSharpIcon/>
+
+          </Button>
+          <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Link style={{ color: 'black' }}  to="/mentor/jee">
+                    JEE MENTOR
+                </Link>
+                </MenuItem>
+              <MenuItem onClick={handleClose}>
+               <Link style={{ color: 'black' }}  to= "/mentor/gate">
+                    GATE MENTOR 
+               </Link>
+    
+              </MenuItem>
+            </Menu>
         <Button color="inherit">
             <Link to = '/login'>  
               Login
@@ -120,12 +143,11 @@ const authLinks = (
               Mentor Boat
           </Link>
         </Typography>
+        
      
-            {!loading && (
-              <Fragment>
-                {isAuthenticated ? authLinks : guestLinks}
-              </Fragment>
-            )}
+        
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        
          
         </Toolbar>
 
@@ -134,7 +156,7 @@ const authLinks = (
   );
 }
 
-ButtonAppBar.propTypes={
+Navbar.propTypes={
   register:PropTypes.object.isRequired,
   logout : PropTypes.func.isRequired,
  
@@ -143,9 +165,10 @@ ButtonAppBar.propTypes={
 
 
 const mapStateToProps = state =>({
-  register:state.register,
+  register:state.register
   
 })
 
 
-export default connect(mapStateToProps,{logout}) (ButtonAppBar)
+
+export default connect(mapStateToProps,{logout}) (Navbar)

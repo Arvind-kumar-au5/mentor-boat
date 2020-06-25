@@ -1,27 +1,42 @@
 import {
-    GET_PROFILE
+    GET_PROFILES,
+    PROFILE_ERROR
 }
 from "../actions/type"
+import { prototype } from "stream";
 
 const initialState = {
-    profile: null,
-    // profiles: [],
-    // repos: [],
+    profiles: [],
     loading: true,
-    // error: {}
+    error: {}
 };
+console.log(initialState)
 
 export default function (state=initialState,action) {
     const  { type,payload } = action
 
+
     switch(type){
-        case GET_PROFILE:
-            return{
+        case GET_PROFILES:
+
+            return {
                 ...state,
-                profile:payload
-            }
+                profiles: payload,
+                loading: false,
+                
+            };
+            
+            
+        case PROFILE_ERROR:
+            return {
+                ...state,
+                error: payload,
+                loading: false,
+                profile: null
+            };
         default:
             return state
+        
     }
     
 }

@@ -14,6 +14,10 @@ import { Provider } from 'react-redux';
 
 import {loadUser} from "./actions/auth"
 import store from './store';
+import MentorLanding from './components/Mentor/MentorLanding';
+import MentorForm from './components/Mentor/MentorForm';
+import Footer from "./components/Layout/Footer"
+import MentorListMentors from "./components/ListMentors/ListMentors"
 function App() {
 
   useEffect(() => {
@@ -25,15 +29,20 @@ function App() {
       <Router>
         <Fragment>
          <Navbar/>
-       
+         <section className="container">
          <Alerts/>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component= {Register} />
             <Route exact path="/login" component= {Login}/>
+            <Route exact path ='/mentor' component = {MentorLanding} /> 
             <PrivateRoute exact path = "/dashboard" component = {Dashboard} />
-            <PrivateRoute  path = "/mentee/profile" component = {Profile} />
+            <PrivateRoute exact path = "/mentee/profile" component = {Profile} />
+            <Route exact path = '/mentor/apply' component = {MentorForm}/>
+            <Route exact path = '/mentor/find' component = {MentorListMentors}/>
           </Switch>
+        </section>
+        <Footer/>
         </Fragment>
       </Router>
     </Provider>

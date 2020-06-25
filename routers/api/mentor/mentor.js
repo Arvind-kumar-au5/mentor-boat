@@ -21,6 +21,7 @@ router.post("/",[
     check('monthly_fee', 'monthly_fee is required').not().isEmpty(),
     check('category', 'category is required').not().isEmpty(),
     check('bio', 'bio is required').not().isEmpty(),
+    check('tags', 'tags is required').not().isEmpty(),
     check('email','Please include a valid email').isEmail(),
     check(
        'password',
@@ -36,6 +37,7 @@ router.post("/",[
            errors:errors.array()
         })
      }
+  
      
     const {
         first_name,
@@ -52,6 +54,25 @@ router.post("/",[
         bio
 
     } = req.body
+   const profileFields = {
+
+      first_name,
+      last_name,
+      email,
+      password,
+      job_title,
+      location,
+      highest_eduction,
+      category,
+      monthly_fee,
+      tags: Array.isArray(tags)
+          ? tags
+          : tags.split(',').map((tag) => ' ' + tag.trim()),
+      date,
+      bio
+   }
+   console.log(profileFields)
+   
     
    
 
@@ -64,7 +85,7 @@ router.post("/",[
  
        if (user){
           return res.status(400).json([{
-             errors:"User already exists"
+             errors:"Mentor already exists"
           }])
        }
  
@@ -78,22 +99,7 @@ router.post("/",[
        );
        
  
-        user = new User({
-          first_name,
-          last_name,
-          email,
-          avatar,
-          password,
-          job_title,
-          location,
-          highest_eduction,
-          category,
-          monthly_fee,
-          tags,
-          date,
-          bio
-
-       })
+        user = new User(profileFields)
  
     // bcrypt before save
        const salt = await bcrypt.genSalt(10);
@@ -125,5 +131,20 @@ router.post("/",[
        res.status(500).send("Server error")
     }
   })
+
+/* @mentorAou route-end point api/user/profiles
+   @des finds profiles
+   @access public
+*/
+router.get('/profiles',async(req,res)=>{
+   try {
+      const profiles = await User.find()
+      res.json(profiles)
+   } catch (err) {
+      console.err(err.message)
+      res.status(500).send('Server error')
+   }
+})
+
 
 module.exports = router

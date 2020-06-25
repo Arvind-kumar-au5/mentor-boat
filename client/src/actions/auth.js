@@ -67,7 +67,8 @@ export const register = ({name,email,password})=>async dispatch=>{
     } catch (error) {
         console.log(error)
         
-        const errors = error.response.data.errors
+        const errors = error.response.data[0].errors
+        
 
         if(errors){
             errors.forEach(error => {

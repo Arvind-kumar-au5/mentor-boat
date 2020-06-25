@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Link} from "react-router-dom"
+import {Link,Redirect} from "react-router-dom"
 import {setValidation} from "../../actions/validation"
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -44,8 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp= ({setValidation,register})=> {
+const SignUp= ({setValidation,register,isAuthenticated})=> {
   const classes = useStyles();
+  if (isAuthenticated){
+    return <Redirect to="/dashboard"/>
+  }
 
   const [formData,setForm] = useState({
     name:'',
@@ -143,7 +146,7 @@ const SignUp= ({setValidation,register})=> {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
           <Grid container>
             <Grid item xs>
@@ -170,9 +173,14 @@ const SignUp= ({setValidation,register})=> {
 SignUp.propTypes = {
   setValidation: PropTypes.func.isRequired,
   register:PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.bool,
 
 };
 
+const mapStateToProps = state =>({
+  isAuthenticated:state.register.isAuthenticated
+})
 
 
-export default connect(null,{setValidation,register}) (SignUp)
+
+export default connect(mapStateToProps,{setValidation,register}) (SignUp)

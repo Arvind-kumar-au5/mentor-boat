@@ -132,7 +132,7 @@ function SignIn({login,isAuthenticated}) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to="/" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
@@ -157,7 +157,7 @@ function SignIn({login,isAuthenticated}) {
 SignIn.propTypes = {
   
   login:PropTypes.func.isRequired,
-  isAuthenticated:PropTypes.object.isRequired,
+  isAuthenticated:PropTypes.bool,
 
 };
 

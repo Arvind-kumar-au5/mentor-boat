@@ -18,7 +18,7 @@ const Alerts = ({ validations }) =>
   ));
 
 Alerts.propTypes = {
-    alerts: PropTypes.array.isRequired
+  validations: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state=>({

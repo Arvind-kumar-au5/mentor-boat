@@ -6,10 +6,7 @@
   --success-color: #28a745;
 }
 
-a {
 
-  text-decoration: none;
-}
 
 .mentor {
   color: #fff;
@@ -58,10 +55,6 @@ body {
   color: #333;
 }
 
-a {
-  color: var(--light-color);
-  text-decoration: none;
-}
 
 ul {
   list-style: none;
@@ -361,7 +354,7 @@ button {
 }
 
 .navbar a:hover {
-  color: var(--primary-color);
+  color: var(--light-color);
 }
 
 .navbar .welcome span {
@@ -379,7 +372,6 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url('./image/education-themes.jpg') no-repeat center center/cover;
   height: 100vh;
 }
 
@@ -624,3 +616,355 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+
+/* Sidebar */
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  position: fixed;
+  height: auto;
+  overflow: auto;
+  
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  background-color: #F7F8FA;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  border-left: 3px solid black;
+  
+  
+}
+
+
+.sidebar a:hover:not(.active) {
+  background-color: #F7F8FA;
+  
+}
+
+div.content {
+  margin-left: 350px;
+  padding: 1px 0px;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+
+/* File Upload */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  color:#baabc9
+}
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.image.is-round img {
+  margin: 5px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+
+
+div {
+  display: block;
+  
+}
+  
+  .image.is-96x96 {
+  height: 130px;
+  width: 130px;
+}
+.image.is-round img {
+  position: relative;
+  margin-top: -87px;
+  margin-left: -1px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+div .profile {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  display: inline;
+  color: grey;
+}
+div .name {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  font-size: 18px;
+  display: inline;
+ 
+}
+
+span.user-name{
+  margin-top: -87px;
+  margin-left: -3px;
+
+}
+
+.image img {
+  height: auto;
+  width: 100%;
+}
+
+h2{
+ font-size: calc(0.75em + 1vmin);
+  margin-bottom: .5714em;
+ 
+}
+
+.profile-background-image--loading {
+  background: url('./image/ember.jpg') 60%/cover;
+}
+.profile-background-image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 22%;
+}
+ @media screen and (min-width: 601px) {
+.profile-background-image{
+    position: relative;
+    width: 100%;
+    padding-bottom: 25%;
+  }
+
+}
+
+
+/* Media 
+ */
+
+@media screen and (min-width: 601px) {
+  .image.is-96x96 {
+    height: 90px;
+    width: 120px;
+    margin-top: -10px;
+  }
+  h2{
+    display: inline;
+  }
+  div .pro {
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 601px) {
+  div .edit{
+    margin-bottom: -220px;
+   
+    
+  }
+
+}
+
+
+ 
+@media screen and (max-width: 600px) {
+  div .edit{
+    margin-top: -250px;
+   
+    
+  }
+  
+}  
+
+
+textarea, .v3 input[type=textarea] {
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 5px 15px;
+  outline: none;
+  background: #f8f9fb;
+  color: #304160;
+  font-size: 17px;
+  border-radius: 5px!important;
+  border: 2px solid #e7edf3!important;
+}
+
+@media screen and (max-width: 600px) {
+  div .detail{
+    margin-top: -210px;
+    height:auto   
+  }
+  
+}  
+
+@media screen and (min-width: 601px) {
+  div .detail{
+    height:auto   
+  }
+  
+}  
+
+@media screen and (max-width: 1800px) {
+  div .detail{
+    width:auto   
+  }
+  
+}  
+
+
+/* @media (max-width: 767px) {
+  #my-input { 
+    width:300px;
+    margin-left:280px
+  }
+}
+
+@media (min-width: 480px) {
+  #my-input { 
+    width:300px;
+    margin-left: -20px;
+  }
+} */
+main > .container {
+  padding: 60px 15px 0;
+}
+
+@media screen and (max-width: 768px){
+
+  #home-search {
+      text-align: center;
+  }
+}
+#home-search {
+  width: 100%;
+  border: 3px solid var(--mc-blue);
+  background-color: #fafcfc;
+  padding: 12px 30px;
+  text-align: left;
+  border-radius: 4px;
+  position: relative;
+}
+@media screen and (max-width: 768px){
+
+  #home-search input {
+      width: 100%;
+  }
+}
+@media screen and (max-width: 768px){
+
+  #home-search input {
+      border-bottom: 1px solid #fff;
+      margin-bottom: 10px;
+  }
+}
+#home-search input {
+  display: inline-block;
+ 
+  background: 0 0;
+  padding: 8px 2px;
+  width: calc(100% - 200px);
+  font-size: 1.05rem;
+}
+body, button, input, select, textarea {
+  font-family: BlinkMacSystemFont,-apple-system,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,fira sans,droid sans,helvetica neue,Helvetica,Arial,sans-serif;
+}
+#home-search button {
+  width: 190px;
+  height: 48px;
+  background-color: #343a40!important;
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.title-blue, .text-blue {
+  color: #304160!important;
+}
+.nametag {
+  font-weight: 600!important;
+  font-size: 1.75rem!important;
+  margin-bottom: 5px!important;
+}
+.has-text-grey {
+  color: #7a7a7a!important;
+}
+
+.tags {
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.tags:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.tag:not(body).is-medium {
+  font-size: 1rem;
+}
+
+.tag:not(body) {
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 3px;
+  color: #4a4a4a;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: .75rem;
+  height: 2em;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1.5;
+  padding-left: .75em;
+  padding-right: .75em;
+  white-space: nowrap;
+}
+

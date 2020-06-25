@@ -37,6 +37,7 @@ const MentorSchema = new Schema({
     type: [String],
     required:true
   },
+ 
   monthly_fee:{
     type:Number
   },
