@@ -89,10 +89,10 @@ const authLinks = (
                           </Link>
                           </MenuItem>
                         <MenuItem onClick={handleClose}>
-                        <a onClick={logout} href='#!'>
-                          <i className='fas fa-sign-out-alt' />{' '}
-                          <span className='hide-sm'>Logout</span>
-                        </a>
+                          <a onClick={logout} href='/mentor/login#!'>
+                            <i className='fas fa-sign-out-alt' />{' '}
+                            <span className='hide-sm'>Logout</span>
+                          </a>
 
                         </MenuItem>
                       </Menu>
