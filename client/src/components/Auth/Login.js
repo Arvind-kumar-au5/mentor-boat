@@ -57,7 +57,8 @@ function SignIn({login,isAuthenticated}) {
   // Hooks 
   const [formData, setformData] = useState({
     email:'',
-    password:''
+    password:'',
+    toLoginafterRedirect: false
   })
 
   const {email,password} = formData
@@ -72,15 +73,19 @@ function SignIn({login,isAuthenticated}) {
   const onSubmit = (e)=>{
     e.preventDefault()
     login(email,password)
+    setTimeout(() => {
+      setformData(() => ({ toLoginafterRedirect: true }));
+    }, 1000);
   }
 
   // Authenticated 
-  if (isAuthenticated){
+  if (formData.toLoginafterRedirect){
       return <Redirect to="/dashboard"/>
   }
 
 
   return (
+    
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>

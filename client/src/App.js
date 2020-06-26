@@ -1,6 +1,6 @@
 import React ,{Fragment,useEffect} from 'react';
 import './App.css';
-import { HashRouter  as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter  as Router, Route, Switch } from 'react-router-dom';
 import Landing from "./components/Layout/Landing"
 import Navbar from "./components/Layout/Navbar"
 import Register from './components/Auth/Register';
