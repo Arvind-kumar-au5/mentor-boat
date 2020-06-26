@@ -6,16 +6,17 @@ export default function Footer() {
         <div>
              <footer className='footer mt-auto py-3 bg-dark text-white'>
                  <div className="container-fluid">
-                    <div class="row">
+                    <div className="row">
                         <div className="col-lg-4 col-md-6 col-xs-12">
                             <ul>
                                 <li>
                                     MentorBoat  
                                 </li>
                                 <li>
-                                   <p>Your trusted source to find highly-vetted mentors
-                                       <p>© 2020 MentorBoat. All Rights Reserved.</p>
-                                    </p> 
+                                   <p>
+                                       Your trusted source to find highly-vetted mentors
+                                       </p> <p>© 2020 MentorBoat. All Rights Reserved.</p>
+                                   
                                 </li>
                                 
                             </ul>

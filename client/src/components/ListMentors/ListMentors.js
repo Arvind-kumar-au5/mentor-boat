@@ -11,20 +11,24 @@ function ListMentors({ getProfiles, profile: { profiles, loading } }) {
         getProfiles();
       }, [getProfiles]);
       
+      const [currentPage, setCurrentPage] = useState(1);
+      const [postsPerPage] = useState(10);
 
-    
-    
-        
+       // Get current posts
+        const indexOfLastMentor = currentPage * postsPerPage;
+        const indexOfFirstMentor = indexOfLastMentor - postsPerPage;
+        const currentMentors = profiles.slice(indexOfFirstMentor, indexOfLastMentor);
 
-
-      console.log(profiles)
+        // Change Page
+        // Change page
+        const paginate = pageNumber => setCurrentPage(pageNumber);
     return (
 
         <div>
             
                 <h2>Find Mentor</h2>
                 <form id="home-search">
-                <input type="text" name="search" placeholder="Try &quot;OS Learning&quot; or &quot;Physics &quot;" autocomplete="off" tabindex="1" id="autocomplete"/>
+                <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autocomplete="off" tabindex="1" id="autocomplete"/>
                 <button type="submit">Find my mentor</button>
                 </form>
                 {loading ? (
@@ -39,6 +43,7 @@ function ListMentors({ getProfiles, profile: { profiles, loading } }) {
                     {profiles.length > 0 ? (
                     profiles.map(profile => (
                         <ProfileItem key={profile._id} profile={profile} />
+                       
                     ))
                     ) : (
                     <h4>No profiles found...</h4>

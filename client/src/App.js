@@ -13,15 +13,21 @@ import Profile from "./components/Profile/Profile"
 import { Provider } from 'react-redux';
 
 import {loadUser} from "./actions/auth"
+import {loadMentor} from "./actions/MentorAuth"
+
+
 import store from './store';
 import MentorLanding from './components/Mentor/MentorLanding';
 import MentorForm from './components/Mentor/MentorForm';
 import Footer from "./components/Layout/Footer"
 import MentorListMentors from "./components/ListMentors/ListMentors"
+import MentorDashboard from "./components/MentorDashboard/MentorDashboard"
+import MentorLogin from "./components/Mentor/MentorLogin"
 function App() {
 
   useEffect(() => {
     store.dispatch(loadUser())
+    store.dispatch(loadMentor())
   }, [])
 
   return (
@@ -40,6 +46,8 @@ function App() {
             <PrivateRoute exact path = "/mentee/profile" component = {Profile} />
             <Route exact path = '/mentor/apply' component = {MentorForm}/>
             <Route exact path = '/mentor/find' component = {MentorListMentors}/>
+            <Route exact path = "/mentor/login" component = {MentorLogin} />
+            <PrivateRoute exact path = "/mentor/dashboard" component = {MentorDashboard} />
           </Switch>
         </section>
         <Footer/>

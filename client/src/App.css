@@ -6,6 +6,11 @@
   --success-color: #28a745;
 }
 
+/* font */
+body {
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+}
+
 
 
 .mentor {
@@ -905,7 +910,7 @@ body, button, input, select, textarea {
 #home-search button {
   width: 190px;
   height: 48px;
-  background-color: #343a40!important;
+  background-color: #007bff!important;
   border: none;
   border-radius: 3px;
   font-weight: 700;
@@ -951,7 +956,6 @@ body, button, input, select, textarea {
 
 .tag:not(body) {
   -ms-flex-align: center;
-  align-items: center;
   border-radius: 3px;
   color: #4a4a4a;
   display: -webkit-inline-box;
@@ -967,4 +971,63 @@ body, button, input, select, textarea {
   padding-right: .75em;
   white-space: nowrap;
 }
+.landing{
+  width: 500px; 
+  height: 527.517px; 
+  transition: none 0s ease 0s; 
+  text-align: inherit; 
+  line-height: 0px; 
+  border-width: 0px; 
+  margin: 0px; padding: 0px; 
+  letter-spacing: 0px; 
+  font-weight: 400; 
+  font-size: 13px;
+  animation-name: landing;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin-left: 30px;
+  margin-top: 5px;
+
+}
+
+.study{
+  width: 300px; 
+  height: 327.517px; 
+  transition: none 0s ease 0s; 
+  text-align: inherit; 
+  line-height: 0px; 
+  border-width: 0px; 
+  margin: 0px; padding: 0px; 
+  letter-spacing: 0px; 
+  font-weight: 400; 
+  font-size: 13px;
+ 
+
+}
+
+@keyframes landing {
+  from { transform: translate(0,  0px); }
+  65%  { transform: translate(0, 25px); }
+  to   { transform: translate(0, -0px); }    
+}
+
+.text-cta {
+  vertical-align: middle;
+  color: #304160;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: underline;
+  margin-left: 5px;
+
+}
+#price-indicator-detail {
+  font-size: 32px;
+  color: #304160;
+  font-weight: 600;
+  line-height: 23px;
+  margin: 10px 10px 3px 4px;
+}
+
+
 

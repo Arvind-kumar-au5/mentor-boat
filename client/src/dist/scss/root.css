@@ -1,0 +1,12 @@
+.my-class {
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.my-class:hover {
+  -webkit-transform: scale(1.5, 1.5);
+          transform: scale(1.5, 1.5);
+}
+/*# sourceMappingURL=root.css.map */

@@ -51,7 +51,8 @@ router.post("/",[
         monthly_fee,
         tags,
         date,
-        bio
+        bio,
+        type
 
     } = req.body
    const profileFields = {
@@ -69,6 +70,7 @@ router.post("/",[
           ? tags
           : tags.split(',').map((tag) => ' ' + tag.trim()),
       date,
+      type,
       bio
    }
    console.log(profileFields)
