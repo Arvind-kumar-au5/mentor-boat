@@ -30,6 +30,9 @@ export default function Footer() {
                                     <Link to="/mentor" style={{color:'white'}}>BECOME A MENTOR</Link>
                                 </li>
                                 <li>
+                                    <Link to="/mentor/login" style={{color:'white'}}> MENTOR LOGIN</Link>
+                                </li>
+                                <li>
                                     <p>FAQ</p>
                                 </li>
                             </ul>
