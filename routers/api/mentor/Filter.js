@@ -17,19 +17,16 @@ const MentorProfile = require('../../../models/Mentor/mentor')
 */
 
 router.get('/:category',async(req,res)=>{
-        console.log(req.params.category)
         try {
             const categoryData = await MentorProfile.find({ category: req.params.category })
-
-            if (!categoryData) return res.status(400).json({ msg: 'Category not found' });
+            if (categoryData === []) return res.status(400).json({ msg: 'Category data not found' });
             res.json(categoryData)
             
         } catch (err) {
             console.error(err.message);
             return res.status(500).json({ msg: 'Server error' });    
         }
-        
-        
+    
     }
 )
 
