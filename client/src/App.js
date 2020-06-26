@@ -32,7 +32,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Router>
+      <Router >
         <Fragment>
          <Navbar/>
          <section className="container">
