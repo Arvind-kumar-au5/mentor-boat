@@ -7,14 +7,14 @@ import Spinner from '../Layout/Spinner';
 const PrivateRoute = ({
   component: Component,
   auth: { isAuthenticated, loading },
-  mentor : {misAuthenticated,mloading},
+  mentor : {misAuthenticated,mentor},
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
       
-       isAuthenticated || misAuthenticated   ? (
+       isAuthenticated || mentor && mentor.type   ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />

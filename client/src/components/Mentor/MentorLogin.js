@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MentorLogin({mentorLogin,isAuthenticated}) {
+function MentorLogin({mentorLogin,misAuthenticated}) {
   const classes = useStyles();
 
   // Hooks 
@@ -77,7 +77,7 @@ function MentorLogin({mentorLogin,isAuthenticated}) {
   }
 
   // Authenticated 
-  if (isAuthenticated){
+  if (misAuthenticated){
       return <Redirect to="/mentor/dashboard"/>
   }
 
@@ -159,12 +159,12 @@ function MentorLogin({mentorLogin,isAuthenticated}) {
 MentorLogin.propTypes = {
   
   login:PropTypes.func.isRequired,
-  isAuthenticated:PropTypes.bool,
+  misAuthenticated:PropTypes.bool,
 
 };
 
 const mapStateToProps = state =>({
-  isAuthenticated:state.mentor.isAuthenticated
+  misAuthenticated:state.mentor.misAuthenticated
 })
 
 

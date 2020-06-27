@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navbar({register:{isAuthenticated,loading,user},logout,mentor:{misAuthenticated}}) {
+function Navbar({register:{isAuthenticated,loading,user},logout,mentor:{misAuthenticated,mentor}}) {
 
  
 
@@ -55,92 +55,87 @@ function Navbar({register:{isAuthenticated,loading,user},logout,mentor:{misAuthe
 const authLinks = (
       <div>   
           
-          { isAuthenticated? 
+          { mentor && mentor.type? 
               (
                 <Fragment>
-                <Button color="inherit">
-                       <Link to = '/mentors'>  
-                         Find Mentor
-                       </Link>
-                 </Button>
+                  <Button color="inherit">
+                        <Link to = '/mentors'>  
+                          Request mentee's
+                        </Link>
+                  </Button>
+                  
+                 
 
                   <Button color="inherit"
-                     aria-owns={anchorEl ? 'simple-menu' : null}
-                     aria-haspopup="true"
-                     onClick={handleClick}
-                     onMouseOver={handleClick}
-                   >
-                         <Avatar alt="Remy Sharp" src={user && user.avatar} />
-                       <KeyboardArrowDownSharpIcon/>
+                      aria-owns={anchorEl ? 'simple-menu' : null}
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                      onMouseOver={handleClick}
+                    >
+                          <Avatar alt="Remy Sharp" src={user && user.avatar} />
+                        <KeyboardArrowDownSharpIcon/>
 
-                   </Button>
-                     <Menu
-                       id="simple-menu"
-                       anchorEl={anchorEl}
-                       open={Boolean(anchorEl)}
-                       onClose={handleClose}
-                       MenuListProps={{ onMouseLeave: handleClose }}
-                     >
-                       <MenuItem onClick={handleClose}>
-                         <Link style={{ color: 'black' }}  to="/mentee/profile">
-                             Profile
-                         </Link>
-                         </MenuItem>
-                       
-                       
-                       <MenuItem onClick={handleClose}>
-                         <a onClick={logout} href='/mentor/login' style={{ color: 'black' }} >
-                             
-                             Logout
-                         </a>
-                       </MenuItem>
-
-
-                
-                     </Menu>
-               
-
-             </Fragment>
-               
+                    </Button>
+                      <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        MenuListProps={{ onMouseLeave: handleClose }}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          <Link style={{ color: 'black' }}  to="/mentee/profile">
+                              Profile
+                          </Link>
+                          </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <a onClick={logout} href='/mentor/login' style={{ color: 'black' }} >
+                              
+                              Logout
+                          </a>
+                        </MenuItem>
+                      </Menu>
+                </Fragment>
               ):
               <Fragment>
-              <Button color="inherit">
-                    <Link to = '/mentors'>  
-                      Request mentee's
-                    </Link>
-              </Button>
+                 <Button color="inherit">
+                        <Link to = '/mentors'>  
+                          Find Mentor
+                        </Link>
+                  </Button>
 
-              <Button color="inherit"
-                  aria-owns={anchorEl ? 'simple-menu' : null}
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                  onMouseOver={handleClick}
-                >
-                      <Avatar alt="Remy Sharp" src={user && user.avatar} />
-                    <KeyboardArrowDownSharpIcon/>
+                   <Button color="inherit"
+                      aria-owns={anchorEl ? 'simple-menu' : null}
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                      onMouseOver={handleClick}
+                    >
+                          <Avatar alt="Remy Sharp" src={user && user.avatar} />
+                        <KeyboardArrowDownSharpIcon/>
 
-                </Button>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                    MenuListProps={{ onMouseLeave: handleClose }}
-                  >
-                    <MenuItem onClick={handleClose}>
-                      <Link style={{ color: 'black' }}  to="/mentee/profile">
-                          Profile
-                      </Link>
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                      <a onClick={logout} href='/login' style={{ color: 'black' }} >
-                          
-                          Logout
-                      </a>
-                    </MenuItem>
-                  </Menu>
-            </Fragment>
-             
+                    </Button>
+                      <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        MenuListProps={{ onMouseLeave: handleClose }}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          <Link style={{ color: 'black' }}  to="/mentee/profile">
+                              Profile
+                          </Link>
+                          </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <a onClick={logout} href='/login' style={{ color: 'black' }} >
+                              
+                              Logout
+                          </a>
+                        </MenuItem>
+                      </Menu>
+                
+
+              </Fragment>
         }
          
       </div>

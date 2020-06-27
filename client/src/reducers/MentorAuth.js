@@ -7,7 +7,6 @@ import {
 
 const initialState = {
         token:localStorage.getItem('token'),
-        isAuthenticated:null,
         mloading:false,
         misAuthenticated : false,
         mentor:{}
@@ -32,7 +31,6 @@ export default function (state=initialState,action) {
                 ...payload,
                 mloading:false,
                 misAuthenticated:true,
-                isAuthenticated:true
             }
         case MENTOR_LOGOUT:
             localStorage.removeItem('token')

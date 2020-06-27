@@ -39,7 +39,7 @@ function App() {
          <Navbar/>
         
          <section className="container">
-        
+         <Alerts/>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component= {Register} />
@@ -56,7 +56,7 @@ function App() {
             <Route component={NotFound} />
           </Switch>
         </section>
-        <Alerts/>
+       
         <Footer/>
         </Fragment>
       </Router>
