@@ -88,12 +88,11 @@ const authLinks = (
                               Profile
                           </Link>
                           </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <a onClick={logout} href='/mentor/login#!'>
-                            <i className='fas fa-sign-out-alt' />{' '}
-                            <span className='hide-sm'>Logout</span>
+                          <MenuItem onClick={handleClose}>
+                          <a onClick={logout} href='/mentor/login' style={{ color: 'black' }} >
+                              
+                              Logout
                           </a>
-
                         </MenuItem>
                       </Menu>
                 </Fragment>
@@ -127,13 +126,17 @@ const authLinks = (
                               Profile
                           </Link>
                           </MenuItem>
+                        
+                        
                         <MenuItem onClick={handleClose}>
-                        <a onClick={logout} href='#!'>
-                          <i className='fas fa-sign-out-alt' />{' '}
-                          <span className='hide-sm'>Logout</span>
-                        </a>
-
+                          <a onClick={logout} href='/login' style={{ color: 'black' }} >
+                              
+                              Logout
+                          </a>
                         </MenuItem>
+
+
+                 
                       </Menu>
                 
 

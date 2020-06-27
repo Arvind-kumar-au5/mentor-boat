@@ -46,9 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp= ({setValidation,register,isAuthenticated})=> {
   const classes = useStyles();
-  if (isAuthenticated){
-    return <Redirect to="/dashboard"/>
-  }
+
 
   const [formData,setForm] = useState({
     name:'',
@@ -75,6 +73,9 @@ const SignUp= ({setValidation,register,isAuthenticated})=> {
       register({name,email,password})
 
     }
+  }
+  if (isAuthenticated){
+    return <Redirect to="/dashboard"/>
   }
   return (
     <Container component="main" maxWidth="xs" >

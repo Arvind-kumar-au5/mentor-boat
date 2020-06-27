@@ -35,11 +35,11 @@ const config = require('config');
    try {
       user=await User.findOne({email})
 
-      if (user){
-         return res.status(400).json([{
-            errors:"User already exists"
-         }])
-      }
+      if (user) {
+         return res
+           .status(400)
+           .json({ errors: [{ msg: 'User already exists' }] });
+       }
 
       const avatar  = normalize (
          gravatar.url(email,{
