@@ -39,13 +39,20 @@ app.use('/api/mentor/profile',require('./routers/api/mentor/Profile'))
 app.use('/api/filter',require('./routers/api/mentor/Filter'))
 
 
-if (process.env.NODE_ENV === "production") {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, "client/build")));
-  // Handle React routing, return all requests to React app
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-  });
+// FOR PRODUCATUION 
+if (process.env.NODE_ENV === 'production') {
+  // Exprees will serve up production assets
+  app.use(express.static('client/build'));
+
+  // Express serve up index.html file if it doesn't recognize route
+  const path = require('path');
+  app.get("*", (req, res) => {
+  let url = path.join(__dirname, 'client/build', 'index.html');
+  if (!url.startsWith('/app/')) // since we're on local windows
+    url = url.substring(1);
+  res.sendFile(url);
+});
+
 }
 
 
