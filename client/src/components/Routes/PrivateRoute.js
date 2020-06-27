@@ -13,6 +13,7 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props =>
+      
        isAuthenticated || misAuthenticated   ? (
         <Component {...props} />
       ) : (

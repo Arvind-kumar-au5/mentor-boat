@@ -1,10 +1,11 @@
 import React from 'react'
+import SimpleSlider from "./Carousel"
 
 function Dashboard() {
     return (
         <div>
-            
-        </div>  
+            <SimpleSlider/>
+       </div>  
     )
 }
 

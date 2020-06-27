@@ -8,7 +8,7 @@ import {
 const initialState = {
         token:localStorage.getItem('token'),
         isAuthenticated:null,
-        mloading:true,
+        mloading:false,
         misAuthenticated : false,
         mentor:{}
 };
@@ -20,9 +20,8 @@ export default function (state=initialState,action) {
         case MENTOR_USER_LOADED:
             return{
                 ...state,
-                isAuthenticated:true,
-                misAuthenticated:true,
                 mloading:false,
+                misAuthenticated:true,
                 mentor:payload
             }
         case MENTOR_REGISTER:
@@ -40,7 +39,7 @@ export default function (state=initialState,action) {
             return{
                 ...state,
                 token:null,
-                mloading:true,
+                mloading:false,
                 misAuthenticated:false
             }
         

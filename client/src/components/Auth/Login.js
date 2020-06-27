@@ -79,7 +79,7 @@ function SignIn({login,isAuthenticated}) {
   }
 
   // Authenticated 
-  if (formData.toLoginafterRedirect){
+  if (isAuthenticated){
       return <Redirect to="/dashboard"/>
   }
 

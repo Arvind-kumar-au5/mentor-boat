@@ -24,6 +24,7 @@ import MentorListMentors from "./components/ListMentors/ListMentors"
 import MentorDashboard from "./components/MentorDashboard/MentorDashboard"
 import MentorLogin from "./components/Mentor/MentorLogin"
 import SingleProfile from "./components/ListMentors/SingleProfile"
+import NotFound from "./components/Layout/404"
 function App() {
 
   useEffect(() => {
@@ -52,6 +53,7 @@ function App() {
             <PrivateRoute exact path = "/mentor/dashboard" component = {MentorDashboard} />
             {/* */}
             <Route exact path="/mentor/profile/:id" component={SingleProfile} />
+            <Route component={NotFound} />
           </Switch>
         </section>
         <Alerts/>
