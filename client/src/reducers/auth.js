@@ -47,7 +47,7 @@ export default function(state = intialState,action) {
             return{
                 ...state,
                 token:null,
-                loading:true,
+                loading:false,
                 isAuthenticated:false
             }
 
