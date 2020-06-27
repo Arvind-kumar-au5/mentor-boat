@@ -13,6 +13,8 @@ export const MENTOR_REGISTER = 'MENTOR_REGISTER'
 export const MENTOR_LOGIN = 'MENTOR_LOGIN'
 export const MENTOR_USER_LOADED = 'MENTOR_USER_LOADED';
 export const MENTOR_LOGOUT = 'MENTOR_LOGOUT'
+export const GET_PROFILE = 'GET_PROFILE'
+
 
 
 

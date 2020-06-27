@@ -23,6 +23,7 @@ import Footer from "./components/Layout/Footer"
 import MentorListMentors from "./components/ListMentors/ListMentors"
 import MentorDashboard from "./components/MentorDashboard/MentorDashboard"
 import MentorLogin from "./components/Mentor/MentorLogin"
+import SingleProfile from "./components/ListMentors/SingleProfile"
 function App() {
 
   useEffect(() => {
@@ -35,8 +36,9 @@ function App() {
       <Router >
         <Fragment>
          <Navbar/>
+        
          <section className="container">
-         <Alerts/>
+        
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component= {Register} />
@@ -48,8 +50,11 @@ function App() {
             <Route exact path = '/mentor/find' component = {MentorListMentors}/>
             <Route exact path = "/mentor/login" component = {MentorLogin} />
             <PrivateRoute exact path = "/mentor/dashboard" component = {MentorDashboard} />
+            {/* */}
+            <Route exact path="/mentor/profile/:id" component={SingleProfile} />
           </Switch>
         </section>
+        <Alerts/>
         <Footer/>
         </Fragment>
       </Router>

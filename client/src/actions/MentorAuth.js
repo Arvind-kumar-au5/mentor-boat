@@ -61,20 +61,18 @@ try {
     
     
 
-} catch (error) {
-    console.log(error)
-    
-    const errors = error.response.data[0].errors
-    
+} catch (err) {
+    const errors = err.response.data.errors;
+    const haveMentor = err.response.data[0].errors
 
-    if(errors){
-        errors.forEach(error => {
-            dispatch(setValidation(error.msg,'error'))
-            
-        });
+    
+    if (errors) {
+      errors.forEach(error => dispatch(setValidation(error.msg, 'error')));
     }
-    
-    
+    if (haveMentor) {
+        dispatch(setValidation(haveMentor, 'error'))
+      }
+
 }
 }
 
@@ -102,18 +100,19 @@ export const mentorLogin = (email,password)=>async dispatch=>{
         
 
     } catch (error) {
-        console.log(error)
+        console.log(error.errors)
         
-        // const errors = error.response.data[0].errors
+        
+        const errors = error.response.data[0].errors
         
 
-        // if(errors){
-        //     errors.forEach(error => {
-        //         console.log(error)
-        //         dispatch(setValidation(error.msg,'error'))
+        if(errors){
+            errors.forEach(error => {
+                console.log(error)
+                dispatch(setValidation(error.msg,'error'))
                 
-        //     });
-        // }
+            });
+        }
         // dispatch({
         //     type:LOGIN_FAILED
         // })

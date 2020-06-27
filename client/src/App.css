@@ -6,9 +6,13 @@
   --success-color: #28a745;
 }
 
+
 /* font */
 body {
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+}
+.section-grey {
+  background-color: #f8f8f8;
 }
 
 
@@ -1027,6 +1031,12 @@ body, button, input, select, textarea {
   font-weight: 600;
   line-height: 23px;
   margin: 10px 10px 3px 4px;
+}
+
+.mentordetail-section-title {
+  color: #304160;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 

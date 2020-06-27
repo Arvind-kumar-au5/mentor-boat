@@ -1,13 +1,15 @@
 import {
     GET_PROFILES,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    GET_PROFILE
 }
 from "../actions/type"
-import { prototype } from "stream";
+
 
 const initialState = {
     profiles: [],
     loading: true,
+    profile:{},
     error: {}
 };
 console.log(initialState)
@@ -17,16 +19,19 @@ export default function (state=initialState,action) {
 
 
     switch(type){
+        case GET_PROFILE:
+            return {
+            ...state,
+            profile: payload,
+            loading: false
+            };
         case GET_PROFILES:
-
             return {
                 ...state,
                 profiles: payload,
-                loading: false,
-                
+                loading: false, 
             };
-            
-            
+             
         case PROFILE_ERROR:
             return {
                 ...state,

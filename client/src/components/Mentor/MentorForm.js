@@ -56,7 +56,7 @@ function MentorForm({mentorRegister,misAuthenticated}) {
         mentorRegister(formData)
       }
 
-      if (misAuthenticated){
+    if (misAuthenticated){
         return <Redirect to="/mentor/dashboard"/>
     }
 
@@ -311,6 +311,7 @@ function MentorForm({mentorRegister,misAuthenticated}) {
 
 MentorForm.propTypes = {
     mentorRegister: PropTypes.func.isRequired,
+    misAuthenticated:PropTypes.bool,
 };
 
 const mapStateToProps = state =>({

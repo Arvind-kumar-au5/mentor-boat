@@ -36,7 +36,7 @@ const ProfileItem = ({profile}) => {
                                 </div>
                              
                                 {profile.bio ? (
-                                <p>{profile.bio}</p>
+                                <p>{profile.bio.split("",300)}</p>
                                 ) : (
                                 <h4></h4>
                                 )}
@@ -60,7 +60,7 @@ const ProfileItem = ({profile}) => {
                                 <Link to='/mentorship/apply' className='btn btn-primary'>
                                     Apply for Mentorship
                                 </Link>
-                                <Link to='/mentor/profile' className="btn btn-outline-primary " style={{width:'180px'}}>
+                                <Link to={`/mentor/profile/${profile._id}`} className="btn btn-outline-primary " style={{width:'180px'}}>
                                     Visit Profile
                                 </Link>
                                 </div>
