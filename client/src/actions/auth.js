@@ -108,19 +108,15 @@ export const login = (email,password)=>async dispatch=>{
         dispatch(loadUser())
         
 
-    } catch (error) {
-        console.log(error)
-        
-        const errors = error.response.data[0].errors
-        
+    } catch (err) {
+        console.log(err)
+        const errors = err.response.data.errors;
 
-        if(errors){
-            errors.forEach(error => {
-                console.log(error)
-                dispatch(setValidation(error.msg,'error'))
-                
-            });
+        if (errors) {
+        errors.forEach(error => dispatch(setValidation(error.msg,'error')));
         }
+        
+    
         dispatch({
             type:LOGIN_FAILED
         })

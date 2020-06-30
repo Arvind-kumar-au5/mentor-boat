@@ -72,6 +72,7 @@ function SignIn({login,isAuthenticated}) {
 
   const onSubmit = (e)=>{
     e.preventDefault()
+    console.log(password)
     login(email,password)
     setTimeout(() => {
       setformData(() => ({ toLoginafterRedirect: true }));

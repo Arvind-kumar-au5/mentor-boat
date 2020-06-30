@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   googleId:{
     type:String,
   },
+
   name: {
     type: String,
    
@@ -19,9 +20,21 @@ const UserSchema = new Schema({
     type: String,
     
   },
+
   avatar: {
     type: String
   },
+  image:{
+    type:String
+  },
+  
+  bio : {
+    type:String
+  },
+  exp : {
+    type:String
+  },
+  
   date: {
     type: Date,
     default: Date.now

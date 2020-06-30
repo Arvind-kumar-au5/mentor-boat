@@ -55,7 +55,7 @@ function Navbar({register:{isAuthenticated,loading,user},logout,mentor:{misAuthe
 const authLinks = (
       <div>   
           
-          { mentor && mentor.type? 
+          { mentor && mentor.type ? 
               (
                 <Fragment>
                   <Button color="inherit">
@@ -84,7 +84,7 @@ const authLinks = (
                         MenuListProps={{ onMouseLeave: handleClose }}
                       >
                         <MenuItem onClick={handleClose}>
-                          <Link style={{ color: 'black' }}  to="/mentee/profile">
+                          <Link style={{ color: 'black' }}  to="/mentor/profile">
                               Profile
                           </Link>
                           </MenuItem>
@@ -99,7 +99,12 @@ const authLinks = (
               ):
               <Fragment>
                  <Button color="inherit">
-                        <Link to = '/mentors'>  
+                        <Link to = '/dashboard'>  
+                          Dashboard
+                        </Link>
+                  </Button>
+                 <Button color="inherit">
+                        <Link to = '/mentee/auth/find'>  
                           Find Mentor
                         </Link>
                   </Button>

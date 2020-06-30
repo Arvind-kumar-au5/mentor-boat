@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {Link} from "react-router-dom"
 
-import Carousel from 'react-elastic-carousel';
-
-
-
-
-const DashBoardProfileItem = ({profile}) => {
+const SearchItem = ({profile}) => {
   return (
     <Fragment>
-        <Carousel>
-
             <div className="row">
                 <div className="col-lg-12 col-md-12 col-xs-12 card shadow mt-3" style={{border:'2px solid #d0dce6'}}>
                     <div className="row">
@@ -59,7 +52,7 @@ const DashBoardProfileItem = ({profile}) => {
                             ₹{profile.monthly_fee}   <span>per  month</span>
                             <div className="row">
                                 <div className="col-lg-10 col-md-10 col-xs-12">
-                                <Link to='/mentorship/apply' className='btn btn-primary'>
+                                <Link to={`/mentorship/apply/${profile.first_name}/`} className='btn btn-primary'>
                                     Apply for Mentorship
                                 </Link>
                                 <Link to={`/mentor/profile/${profile._id}`} className="btn btn-outline-primary " style={{width:'180px'}}>
@@ -83,18 +76,15 @@ const DashBoardProfileItem = ({profile}) => {
                 
 
             </div>
-        </Carousel>
       
     </Fragment>
   );
 };
 
-DashBoardProfileItem.propTypes = {
+SearchItem.propTypes = {
     profile: PropTypes.object.isRequired
 };
 
 
- 
 
-
-export default DashBoardProfileItem
+export default SearchItem

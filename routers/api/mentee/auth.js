@@ -50,6 +50,7 @@ const app = express()
          }])
       }
 
+      console.log(password,user.password)
   
    const isMatch = await bcrypt.compare(password,user.password)
    if(!isMatch){

@@ -8,6 +8,15 @@ const normalize = require('normalize-url');
 const checkObjectId = require('../../../middleware/CheckObjectId');
 
 const MenteeProfile = require('../../../models/Mentee/User')
+var cloudinary = require('cloudinary').v2;
+var multiparty = require("multiparty");
+
+// Cloudnary set up
+cloudinary.config({
+  cloud_name: "dlqxpkg7h",
+  api_key: "661815952242859",
+  api_secret: "zfP44FsPnUFcaXBvRF1TW0xfdlw"
+});
 
 
 
@@ -51,42 +60,50 @@ router.delete('/', auth, async (req, res) => {
   // @desc     Add Profile
   // @  access  Private
 
-  router.put(
-    '/update',
-    [
-      auth
-    ],
-    async (req, res) => {
-        console.log(req.user.id)
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-  
-      const {
-        name,
-        email
-      } = req.body;
-  
-      const newProfile = {
-       name,
-       email
-      };
-  
-      try {
-        let profile = await MenteeProfile.findOneAndUpdate(
-            { _id: req.user.id },
-            { $set: newProfile },
-            { new: true, upsert: true }
-          );
-          res.json(profile);
-  
-        res.json(profile);
-      } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-      }
+ 
+
+router.post('/update',auth ,async (req, res) => {
+  const userId = req.user.id
+  const { name,email, avatar,bio} = req.body
+  let mentee = await MenteeProfile.findOne({ _id: userId })
+   mentee.name=name
+   mentee.email=email
+   mentee.avatar=avatar
+   mentee.bio= bio
+   mentee.save();
+   res.send(mentee)
     }
-  );
+);
+
+//@route    PUT api/profile/upload
+//@desc     Image Profile
+//@  access  Private
+router.post('/upload',auth ,async (req, res) => {
+  var form = new multiparty.Form();
+  form.parse(req, function(err, fields, files){
+    console.log(files)
+    cloudinary.uploader.upload(
+      files.avatar[0].path,
+      { resource_type: "image" },
+      async function(err, result) {
+        if (err){
+          console.log("error message: ", err);
+        }
+        else{
+          var updatedUser = await MenteeProfile.findByIdAndUpdate(
+           req.user.id,
+            {
+              $set: { avatar: result.secure_url }
+            },
+            { new: true }
+          )
+          res.json(updatedUser)
+        }
+      }
+    )
+  })
+})
+
+
 
 module.exports = router

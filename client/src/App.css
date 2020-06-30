@@ -719,15 +719,19 @@ div {
 }
   
   .image.is-96x96 {
-  height: 130px;
-  width: 130px;
+  height: 96px;
+  width: 96px;
 }
 .image.is-round img {
   position: relative;
   margin-top: -87px;
-  margin-left: -1px;
+  margin-left: -2px;
   background: #fff;
-  border-radius: 50%;
+  
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
 }
 
 div .profile {
@@ -1038,6 +1042,28 @@ body, button, input, select, textarea {
   font-weight: 700;
   font-size: 1.1rem;
 }
+
+.slick-prev:before, .slick-next:before {
+  color: #09529b !important;
+
+
+}
+.slick-prev:before{
+  color: #09529b !important;
+  margin-left: 9px;
+}
+.slick-next:before{
+  color: #09529b !important;
+  margin-left: -20px;
+}
+
+.slick-dots:before {
+  color: #09529b !important;
+
+}
+
+
+
 
 
 

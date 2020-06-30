@@ -7,8 +7,11 @@ import Register from './components/Auth/Register';
 import Login from "./components/Auth/Login"
 import Alerts from "./components/Layout/Alert"
 import PrivateRoute from "./components/Routes/PrivateRoute"
+import MentorRoute from "./components/Routes/MentorRoute"
 import Dashboard from "./components/Dashboard/Dashboard"
 import Profile from "./components/Profile/Profile"
+import Mentors from "./components/Dashboard/Mentors"
+import MentorProfle from "./components/MentorDashboard/MentorProfile"
 // redux 
 import { Provider } from 'react-redux';
 
@@ -24,7 +27,13 @@ import MentorListMentors from "./components/ListMentors/ListMentors"
 import MentorDashboard from "./components/MentorDashboard/MentorDashboard"
 import MentorLogin from "./components/Mentor/MentorLogin"
 import SingleProfile from "./components/ListMentors/SingleProfile"
+import Update from "./components/Profile/Update"
 import NotFound from "./components/Layout/404"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ApplyForm from './components/Layout/ApplyForm';
+import EditMentor from "./components/MentorDashboard/EditMentor"
+import SearchPage from "./components/Filter/SearchResult"
 function App() {
 
   useEffect(() => {
@@ -50,9 +59,15 @@ function App() {
             <Route exact path = '/mentor/apply' component = {MentorForm}/>
             <Route exact path = '/mentor/find' component = {MentorListMentors}/>
             <Route exact path = "/mentor/login" component = {MentorLogin} />
-            <PrivateRoute exact path = "/mentor/dashboard" component = {MentorDashboard} />
+            <MentorRoute exact path = "/mentor/dashboard" component = {MentorDashboard} />
+            <MentorRoute exact path = "/mentor/profile" component = {MentorProfle} />
+            <MentorRoute exact path = "/edit/mentor" component = {EditMentor} />
             {/* */}
             <Route exact path="/mentor/profile/:id" component={SingleProfile} />
+            <PrivateRoute exact path="/mentee/edit/:id" component={Update} />
+            <PrivateRoute exact path="/mentee/auth/find" component={Mentors} />
+            <Route exact path= "/mentorship/apply/:name" component = {ApplyForm}/>
+            <Route exact path="/search" component={SearchPage} />
             <Route component={NotFound} />
           </Switch>
         </section>

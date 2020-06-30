@@ -30,5 +30,33 @@ router.get('/:category',async(req,res)=>{
     }
 )
 
+// Search by category
+router.get('/search/mentor',async (req,res)=>{
+  
+    var search = req.query.q;
+    console.log(search)
+    var a = new RegExp("^" + search + ".*", "i");
+    console.log(a)
+    let finddata = await MentorProfile.find({
+        $or: [
+          { category: new RegExp(search, "gi") },
+          { tags: new RegExp(search, "gi") },
+          { bio: new RegExp(search, "gi") }
+        ]
+    
+      })
+    res.json(finddata)
+  
+      
+      
+})
+
+
+
+
+  
+
+    
+
 
 module.exports = router

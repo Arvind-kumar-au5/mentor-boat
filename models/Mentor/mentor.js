@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 
 const MentorSchema = new Schema({
 
+  applied: { type: Schema.Types.ObjectId, ref: 'applied' },
+
   first_name: {
     type: String,
    
@@ -51,7 +53,10 @@ const MentorSchema = new Schema({
   type : {
     type : String,
     default:"Mentor",
-  }
+  },
+  
 });
+
+MentorSchema.index({'$**': 'text'});
 
 module.exports = User = mongoose.model("mentor", MentorSchema);

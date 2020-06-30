@@ -57,7 +57,7 @@ const ProfileItem = ({profile}) => {
                             ₹{profile.monthly_fee}   <span>per  month</span>
                             <div className="row">
                                 <div className="col-lg-10 col-md-10 col-xs-12">
-                                <Link to='/mentorship/apply' className='btn btn-primary'>
+                                <Link to={`/mentorship/apply/${profile.first_name}/`} className='btn btn-primary'>
                                     Apply for Mentorship
                                 </Link>
                                 <Link to={`/mentor/profile/${profile._id}`} className="btn btn-outline-primary " style={{width:'180px'}}>

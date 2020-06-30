@@ -38,6 +38,9 @@ app.use('/api/mentor/profile',require('./routers/api/mentor/Profile'))
 // Filter Api
 app.use('/api/filter',require('./routers/api/mentor/Filter'))
 
+// MentorShip Apply
+app.use('/api/mentorship',require('./routers/api/mentee/applied'))
+app.use('/api/applications',require('./routers/api/mentor/application'))
 
 // FOR PRODUCATUION 
 if (process.env.NODE_ENV === 'production') {

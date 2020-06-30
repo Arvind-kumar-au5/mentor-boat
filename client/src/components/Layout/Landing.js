@@ -1,28 +1,54 @@
-import React, {  } from 'react'
+import React, { useState,useEffect } from 'react'
 import {Link,Redirect} from "react-router-dom"
 import {connect} from "react-redux"
 import PropTypes from 'prop-types'
 import landingpage from "../../image/landingpage.png"
 import study from "../../image/study.png"
 import roadmap from "../../image/custom_roadmap.png"
+import axios from "axios"
 
 
  const Landing=({isAuthenticated,misAuthenticated,type})=> {
+  const search = window.location.search;
+
+   useEffect(() => {
+    getSearch()
+   }, [])
     if(misAuthenticated) {
       return <Redirect to = "/mentor/dashboard" />
     }
     if(isAuthenticated) {
       return <Redirect to = "/dashboard" />
     }
+    const [Search, setSearch] = useState("")
    
+    // Search onchange 
+      const onChange = (e)=>{
+        setSearch({[e.target.name]:e.target.value})
+      }
+      console.log(Search.search)
+    // Submit 
+    const getSearch = () => {
+
+      
+   
+    }
+    const onSubmit = (e) =>{
+      e.preventDefault()
+      getSearch()
+    }
+    
    
     return (
       <section className="container">
           <div className="row">
                     <h2>Find Mentor</h2>
-                    <form id="home-search">
-                    <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autoComplete="off" tabIndex="1" id="autocomplete"/>
-                    <button type="submit" >Find my mentor</button>
+                    <form id="home-search" onSubmit = {onSubmit}>
+                      
+                      <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autoComplete="off" tabIndex="1" id="autocomplete" onChange={onChange}/>
+                      <Link to={`/search/?q=${Search.search}`}>
+                          <button type="submit" >Find my mentor</button>
+                      </Link>
                     </form>
              
               <div className="col-lg-6 col-md-6 col-xs-12 mt-5">
