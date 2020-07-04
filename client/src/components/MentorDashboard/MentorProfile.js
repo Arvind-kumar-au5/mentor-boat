@@ -7,7 +7,6 @@ import {
   Button,
   ListGroup,
   ListGroupItem,
-  Progress
 } from "shards-react";
 import {connect} from "react-redux"
 
@@ -16,6 +15,8 @@ import {connect} from "react-redux"
 const UserDetails = ({ mentor:{mentor} }) => (
   <Card small className="mb-4 pt-3">
     <CardHeader className="border-bottom text-center">
+   
+    <img src={mentor.avatar}  style= {{heigh:"96px" ,width:'96px',borderRadius:'50%'}}/>
       
       <h4 className="mb-0">{mentor.first_name}</h4>
       <span className="text-muted d-block mb-2">{mentor.job_title}</span>

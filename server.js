@@ -42,6 +42,9 @@ app.use('/api/filter',require('./routers/api/mentor/Filter'))
 app.use('/api/mentorship',require('./routers/api/mentee/applied'))
 app.use('/api/applications',require('./routers/api/mentor/application'))
 
+// for forgot password
+// app.use('/api/user/password',require('./routers/api/mentee/NewPass'))
+
 // FOR PRODUCATUION 
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets

@@ -54,6 +54,15 @@ const MentorSchema = new Schema({
     type : String,
     default:"Mentor",
   },
+  application : [
+    {
+    type:Schema.Types.ObjectId,
+    ref:"application"
+    }
+  ],
+  avatar:{
+    type:String
+  }
   
 });
 

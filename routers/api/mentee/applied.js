@@ -30,10 +30,10 @@ router.post(
         mentorId,
         
       } = req.body;
-      const alreadyApplied = await Application.findOne({
-        mentorId: req.body.mentorId, 
-      })
-      if (alreadyApplied) return res.status(400).send('already applied')
+      // const alreadyApplied = await Application.findOne({
+      //   menteeId: req.body.menteeId, 
+      // })
+      // if (alreadyApplied) return res.status(400).send('already applied')
   
       const applicationFields = new Application({
         bio,
@@ -59,6 +59,7 @@ router.post(
   );
   
 router.get('/apply',auth,async (req,res)=>{
+  console.log("hello")
     try {
       let applied = await Application.find()
       let data = {}

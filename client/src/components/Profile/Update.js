@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import { useState } from 'react'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {connect} from "react-redux"
 import PropTypes from 'prop-types';
-import { useHistory } from "react-router-dom";
+
 
 function Example({register:{user}  }) {
  

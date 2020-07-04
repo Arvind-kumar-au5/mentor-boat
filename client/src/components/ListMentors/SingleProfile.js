@@ -32,7 +32,7 @@ function SingleProfile({getProfileById,match,profile}) {
                     <span className="tag is-medium">📞 1-on-1 Calls
                     &nbsp;(10x/mo)
                     </span>
-                    <span class="tag is-medium">🛎 Hands-On Support</span>
+                    <span className="tag is-medium">🛎 Hands-On Support</span>
                 </div>
                 {profile.bio ? (
                     <p>{profile.bio}</p>
@@ -44,11 +44,13 @@ function SingleProfile({getProfileById,match,profile}) {
             </div>
 
             <div className="col-lg-3 col-md-3 col-xs-6 mt-5">
+                <div>
                 <p id="price-indicator-detail">
-                ₹{profile.monthly_fee}
+                ₹{profile.monthly_fee} <b className="ml-4">per month</b>
                     <br/>
-                    <h3 className="ml-4">per month</h3>
+                    
                 </p>
+                </div>
                 <br/>
                 <Link to='/mentorship/apply' className='btn btn-primary w-100' >
                     Apply for Mentorship
@@ -57,7 +59,7 @@ function SingleProfile({getProfileById,match,profile}) {
                 <br/>
                 <hr/>
                 <br/>
-                <p class="mentordetail-section-title">Skills taught by mentor</p>
+                <p className="mentordetail-section-title">Skills taught by mentor</p>
                 <div className="tags" style={{marginTop: '1rem'}}>
                     {profile.tags}
                 </div>

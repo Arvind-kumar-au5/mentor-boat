@@ -34,12 +34,16 @@ import "slick-carousel/slick/slick-theme.css";
 import ApplyForm from './components/Layout/ApplyForm';
 import EditMentor from "./components/MentorDashboard/EditMentor"
 import SearchPage from "./components/Filter/SearchResult"
+import Request from "./components/MentorDashboard/Request"
+import setAuthToken from './utils/SetToken';
 function App() {
 
   useEffect(() => {
+    setAuthToken(localStorage.token);
     store.dispatch(loadUser())
     store.dispatch(loadMentor())
   }, [])
+  console.log()
 
   return (
     <Provider store={store}>
@@ -68,6 +72,8 @@ function App() {
             <PrivateRoute exact path="/mentee/auth/find" component={Mentors} />
             <Route exact path= "/mentorship/apply/:name" component = {ApplyForm}/>
             <Route exact path="/search" component={SearchPage} />
+            <PrivateRoute exact path="/search/auth" component={SearchPage} />
+            <MentorRoute exact path = "/request" component = {Request} />
             <Route component={NotFound} />
           </Switch>
         </section>

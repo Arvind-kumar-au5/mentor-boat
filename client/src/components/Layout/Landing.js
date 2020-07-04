@@ -8,18 +8,9 @@ import roadmap from "../../image/custom_roadmap.png"
 import axios from "axios"
 
 
- const Landing=({isAuthenticated,misAuthenticated,type})=> {
-  const search = window.location.search;
-
-   useEffect(() => {
-    getSearch()
-   }, [])
-    if(misAuthenticated) {
-      return <Redirect to = "/mentor/dashboard" />
-    }
-    if(isAuthenticated) {
-      return <Redirect to = "/dashboard" />
-    }
+ const Landing=({isAuthenticated,mentor,type,misAuthenticated})=> {
+  
+   
     const [Search, setSearch] = useState("")
    
     // Search onchange 
@@ -28,22 +19,19 @@ import axios from "axios"
       }
       console.log(Search.search)
     // Submit 
-    const getSearch = () => {
-
-      
-   
+  
+    if(misAuthenticated && mentor) {
+      return <Redirect to = "/mentor/dashboard" />
     }
-    const onSubmit = (e) =>{
-      e.preventDefault()
-      getSearch()
+    if(isAuthenticated) {
+      return <Redirect to = "/dashboard" />
     }
-    
    
     return (
       <section className="container">
           <div className="row">
                     <h2>Find Mentor</h2>
-                    <form id="home-search" onSubmit = {onSubmit}>
+                    <form id="home-search">
                       
                       <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autoComplete="off" tabIndex="1" id="autocomplete" onChange={onChange}/>
                       <Link to={`/search/?q=${Search.search}`}>
@@ -178,7 +166,8 @@ Landing.propTypes = {
 
 const mapsStateToProps = state =>({
   isAuthenticated:state.register.isAuthenticated,
-  misAuthenticated:state.mentor.misAuthenticated,
+  mentor:state.mentor.mentor,
+  misAuthenticated:state.mentor.misAuthenticated
 })
 
 export default connect(mapsStateToProps)(Landing)

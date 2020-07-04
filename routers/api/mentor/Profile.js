@@ -11,8 +11,8 @@ const MentorProfile = require('../../../models/Mentor/mentor')
 
 
 
-/* @ProfileApi route-end point /api/mentee/profile/:user_id
-   @des single mentee profile
+/* @ProfileApi route-end point /api/mentor/profile/:user_id
+   @des single mentor profile
    @access Public
 */
 
@@ -29,6 +29,37 @@ router.get('/:user_id',checkObjectId('user_id'),
         }
     }
 )
+
+
+
+/* @ProfileApi route-end point /api/mentor/profile/update
+   @des single mentee profile
+   @access Public
+*/
+
+router.post('/update',auth ,async (req, res) => {
+    const userId = req.user.id
+    const { 
+        job_title,
+        location,
+        highest_eduction,
+        category,
+        monthly_fee,
+        avatar,
+        bio,
+    } = req.body
+    let mentor = await MentorProfile.findOne({ _id: userId })
+     mentor.avatar=avatar
+     mentor.job_title= job_title
+     mentor.location= location
+     mentor.highest_eduction= highest_eduction
+     mentor.category= category
+     mentor.monthly_fee= monthly_fee
+     mentor.bio= bio
+     mentor.save();
+     res.send(mentor)
+      }
+  );
 
 
 module.exports = router

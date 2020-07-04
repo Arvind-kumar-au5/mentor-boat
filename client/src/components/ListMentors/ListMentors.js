@@ -5,36 +5,37 @@ import {getProfiles} from "../../actions/Profile"
 import PropTypes from 'prop-types';
 import Spinner from "../Layout/Spinner"
 import ProfileItem from "./ProfileItem"
+import {Link} from "react-router-dom"
 
 function ListMentors({ getProfiles, profile: { profiles, loading } }) {
     useEffect(() => {
         getProfiles();
       }, [getProfiles]);
       
-      const [currentPage, setCurrentPage] = useState(1);
-      const [postsPerPage] = useState(10);
-
-       // Get current posts
-        const indexOfLastMentor = currentPage * postsPerPage;
-        const indexOfFirstMentor = indexOfLastMentor - postsPerPage;
-        const currentMentors = profiles.slice(indexOfFirstMentor, indexOfLastMentor);
-
-        // Change Page
-        // Change page
-        const paginate = pageNumber => setCurrentPage(pageNumber);
+      const [Search, setSearch] = useState("")
+   
+      // Search onchange 
+        const onChange = (e)=>{
+          setSearch({[e.target.name]:e.target.value})
+        }
     return (
 
-        <div>
+        <Fragment>
             
                 <h2>Find Mentor</h2>
-                <form id="home-search">
-                <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autocomplete="off" tabindex="1" id="autocomplete"/>
-                <button type="submit">Find my mentor</button>
-                </form>
+                    <form id="home-search">
+                      
+                      <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autoComplete="off" tabIndex="1" id="autocomplete" onChange={onChange}/>
+                      <Link to={`/search/?q=${Search.search}`}>
+                          <button type="submit" >Find my mentor</button>
+                      </Link>
+                    </form>
                 {loading ? (
                 <Spinner />
             ) : (
                 <Fragment>
+                <div>
+
                 <p className='lead'>
                     <i className='fab fa-connectdevelop' /> Browse and connect with
                     mentors
@@ -49,10 +50,11 @@ function ListMentors({ getProfiles, profile: { profiles, loading } }) {
                     <h4>No profiles found...</h4>
                     )}
                 </div>
+                </div>
                 </Fragment>
             )}
            
-        </div>
+        </Fragment>
     )
 }
 ListMentors.propTypes = {

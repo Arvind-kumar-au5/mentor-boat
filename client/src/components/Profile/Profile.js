@@ -1,18 +1,11 @@
 import React ,{useState,Fragment,useEffect}from 'react'
 import {Link} from "react-router-dom"
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import SaveIcon from '@material-ui/icons/Save';
-
-
 import { Modal, Button } from 'react-bootstrap'
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
 
 
 
@@ -34,14 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// Don't Change
-const nameStyle = {
-    fontSize: 17,
-    color: "black",
-    textAlign: "center",
-    display:'inline',
-    fontFamily:'Robot'
-}
+
 
 // Profile
 
@@ -50,15 +36,16 @@ const nameStyle = {
 
 
 function Profile({register:{user},loadUser}) {
+  
+    useEffect(() => {
+        loadUser()
+    }, [loadUser])
     
-  useEffect(() => {
-      getApplication()
-  }, [])
+  
   const token = localStorage.getItem("token");
 // For profile data
     let { name, email ,bio,avatar} = user
     const [show, setShow] = useState(false);
-    const [applied,setapplied] = useState({})
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
@@ -71,21 +58,9 @@ function Profile({register:{user},loadUser}) {
         [e.target.name]: e.target.value
       })
     }
-    const getApplication = () => {
-
-        let request = axios({
-              method: "GET",
-              url: "/api/mentorship/apply",
-              headers: {
-                    "x-auth-token": token
-              },
-        });
-        request.then(res => {
-              console.log(res)
-              setapplied(res)
-        })
-  }
+    
     const uploadPic = async (image) => {
+        
         const data = new FormData();
         data.append('file', image);
         data.append('upload_preset', 'Mentor');
@@ -94,6 +69,9 @@ function Profile({register:{user},loadUser}) {
           body: data
         });
         const file = await res.json();
+        if(file){
+            alert('file uploaded..')
+        }
         console.log(file);
         updateUserData({
             avatar: file.secure_url,
@@ -101,8 +79,7 @@ function Profile({register:{user},loadUser}) {
             email,
             bio
         })
-        
-    
+
     }
 
     console.log(userdata)
@@ -113,6 +90,7 @@ function Profile({register:{user},loadUser}) {
           console.log(result)
           if (result) {
             toast.warn("successfully updated")
+            window.location.reload('/mentee/profile')
             
             
           }
@@ -139,18 +117,12 @@ function Profile({register:{user},loadUser}) {
               </aside> 
             </div>
             
-            <div class="content card shadow">
-               
-            
+            <div className="content card shadow">
+             <div className={classes.root,'pro'}>
+              <div> 
+                <div className="row">    
 
-            <div className={classes.root,'pro'}>
-            
-                <div>
-                   
-                <div class="row">
-                          
-                          
-                    </div>
+                </div>
                     <div tabindex="0" id="ember824" className="profile-background-image profile-background-image--loading ember-view full-width">
                 
                     </div>
@@ -253,8 +225,6 @@ function Profile({register:{user},loadUser}) {
 Profile.propTypes = {
     register:PropTypes.object.isRequired,
     loadUser :PropTypes.func.isRequired,
-
-  
 };
 
 const mapStateToProps = state =>({

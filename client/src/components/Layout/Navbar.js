@@ -12,14 +12,14 @@ import Avatar from '@material-ui/core/Avatar';
 import KeyboardArrowDownSharpIcon from '@material-ui/icons/KeyboardArrowDownSharp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MentorDashboard from "./MentorDashboard"
+
 
 
 
 
 // Redux 
 import {connect} from "react-redux"
-import MentorLanding from '../Mentor/MentorLanding';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,7 +59,7 @@ const authLinks = (
               (
                 <Fragment>
                   <Button color="inherit">
-                        <Link to = '/mentors'>  
+                        <Link to = '/request'>  
                           Request mentee's
                         </Link>
                   </Button>
@@ -72,7 +72,7 @@ const authLinks = (
                       onClick={handleClick}
                       onMouseOver={handleClick}
                     >
-                          <Avatar alt="Remy Sharp" src={user && user.avatar} />
+                          <Avatar alt="Remy Sharp" src={mentor && mentor.avatar} />
                         <KeyboardArrowDownSharpIcon/>
 
                     </Button>

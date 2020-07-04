@@ -2,26 +2,29 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Spinner from "../Layout/Spinner"
 
-const PrivateRoute = ({
+const MentorRoute = ({
   component: Component,
-  mentor : {misAuthenticated},
+  mentor: { misAuthenticated, loading },
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      
-        misAuthenticated  ? (
+      loading ? (
+        <Spinner />
+      ) : misAuthenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/mentor/login" />
       )
     }
   />
 );
 
-PrivateRoute.propTypes = {
+
+MentorRoute.propTypes = {
   mentor : PropTypes.object.isRequired,
 };
 
@@ -29,4 +32,4 @@ const mapStateToProps = state => ({
   mentor : state.mentor
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(MentorRoute);

@@ -40,7 +40,6 @@ function MentorForm({mentorRegister,misAuthenticated}) {
         category,
         monthly_fee,
         tags,
-        date,
         bio
       } = formData
     
@@ -65,12 +64,12 @@ function MentorForm({mentorRegister,misAuthenticated}) {
         <div>
             <form onSubmit={onSubmit}>
 
-            <div class="row">
+            <div className="row">
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <div className="row">
-                        <div class="col-lg-12 col-md-12 col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+                        <div className="col-lg-12 col-md-12 col-xs-12">
+                            <div className="panel panel-default">
+                                <div className="panel-body">
                                     <h2 style={{color:'black'}}>
                                             Personal Information 
                                     </h2> 
@@ -85,17 +84,17 @@ function MentorForm({mentorRegister,misAuthenticated}) {
               
                 <div className="col-lg-6 col-md-6 col-xs-12">
                     <div className="row">
-                        <div class="col-lg-6 col-md-6 col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                            <div className="panel panel-default">
+                                <div className="panel-body">
                                 <TextField id="standard-basic" label="First Name" style ={{width:'270px'}} name="first_name" value={first_name} onChange={onChnage} />
                                 </div>
                             </div>
                         </div>
                     <br/>
-                    <div class="col-lg-6 col-md-6 col-xs-12 ">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                    <div className="col-lg-6 col-md-6 col-xs-12 ">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
                             <FormControl>
                                 <InputLabel htmlFor="my-input"style ={{width:'270px'}} >Last Name</InputLabel>
                                 <Input 
@@ -111,9 +110,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                     </div>
                     <br/>
                    
-                    <div class="col-lg-12 col-md-3 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                    <div className="col-lg-12 col-md-3 col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
                             <FormControl>
                                 <InputLabel htmlFor="my-input" >Email</InputLabel>
                                 <Input 
@@ -130,9 +129,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+                    <div className="col-lg-6 col-md-6 col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
                             <FormControl>
                                 <InputLabel htmlFor="my-input" >Job Title</InputLabel>
                                 <Input 
@@ -148,9 +147,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                             </div>
                         </div>
                     </div>
-                        <div class="col-lg-6 col-md-6 col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                            <div className="panel panel-default">
+                                <div className="panel-body">
                                 <FormControl>
                                     <InputLabel id="label">Location </InputLabel>
                                     <Select labelId="label" id="select"  style ={{width:'270px'}} 
@@ -167,9 +166,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-6 col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+                        <div className="col-lg-12 col-md-6 col-xs-12">
+                            <div className="panel panel-default">
+                                <div className="panel-body">
                                     <FormControl>
                                         <InputLabel id="label">Higher Education </InputLabel>
                                         <Select labelId="label" id="select"  style ={{width:'270px'}}
@@ -190,11 +189,11 @@ function MentorForm({mentorRegister,misAuthenticated}) {
               </div>
             <hr />
             <div className="row">
-                    <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div className="col-lg-6 col-md-6 col-xs-12">
                             <div className="row">
-                                <div class="col-lg-12 col-md-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
+                                <div className="col-lg-12 col-md-12 col-xs-12">
+                                    <div className="panel panel-default">
+                                        <div className="panel-body">
                                             <h2 style={{color:'black'}}>
                                             Mentorship Questions
                                             </h2> 
@@ -206,11 +205,11 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                 </div>
                             </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                    <div className="col-lg-6 col-md-6 col-xs-12 ">
                         <div className="row">
-                            <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
+                            <div className="col-lg-6 col-md-6 col-xs-12 ">
+                                <div className="panel panel-default">
+                                    <div className="panel-body">
                                     <FormControl>
                                         <InputLabel id="label">CATEGORY </InputLabel>
                                         <Select labelId="label" id="select"  style ={{width:'270px'}}
@@ -225,9 +224,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-xs-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
+                            <div className="col-lg-6 col-md-6 col-xs-12">
+                                <div className="panel panel-default">
+                                    <div className="panel-body">
                                     <FormControl>
                                         <InputLabel htmlFor="my-input" >TAGS</InputLabel>
                                         <Input id="my-input" aria-describedby="my-helper-text" style ={{width:'270px'}} placeholder="Physics,maths,dsa" 
@@ -240,9 +239,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
+                            <div className="col-lg-12 col-md-12 col-xs-12">
+                                <div className="panel panel-default">
+                                    <div className="panel-body">
                                     <FormControl>
                                         <InputLabel htmlFor="my-input" >MONTHLY FEE IN RS :</InputLabel>
                                         <Input id="my-input" aria-describedby="my-helper-text" style ={{width:'270px'}} 
@@ -255,9 +254,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body ">
+                            <div className="col-lg-12 col-md-12 col-xs-12">
+                                <div className="panel panel-default">
+                                    <div className="panel-body ">
                                     <FormControl>
                                         <InputLabel htmlFor="my-input" >BIO:</InputLabel>
                                         <br/>
@@ -276,9 +275,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
+                            <div className="col-lg-12 col-md-12 col-xs-12">
+                                <div className="panel panel-default">
+                                    <div className="panel-body">
                                     <FormControl>
                                         <InputLabel htmlFor="my-input" >PASSWORD</InputLabel>
                                         <Input id="my-input" aria-describedby="my-helper-text" style ={{width:'270px'}} 
@@ -291,9 +290,9 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
+                            <div className="col-lg-12 col-md-12 col-xs-12">
+                                <div className="panel panel-default">
+                                    <div className="panel-body">
                                         <button className="btn btn-success mt-3" style={{background:'#304160',width:'120px'}}>Submit</button>
                                     </div>
                                 </div>

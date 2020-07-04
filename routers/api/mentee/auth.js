@@ -12,7 +12,6 @@ const app = express()
 /* @userApi route-end point api/auth
    @des auth detail/login
    @access Public
-
 */
  router.get("/", auth , async(req,res)=>{
     try {

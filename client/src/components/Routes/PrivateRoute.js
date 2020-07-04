@@ -7,14 +7,14 @@ import Spinner from '../Layout/Spinner';
 const PrivateRoute = ({
   component: Component,
   auth: { isAuthenticated, loading },
-  mentor : {misAuthenticated,mentor},
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      
-       isAuthenticated  ? (
+      loading ? (
+        <Spinner />
+      ) : isAuthenticated ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
@@ -24,13 +24,11 @@ const PrivateRoute = ({
 );
 
 PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired,
-  mentor : PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.register,
-  mentor : state.mentor
+  auth: state.register
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

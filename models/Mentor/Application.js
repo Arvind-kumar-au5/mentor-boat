@@ -5,8 +5,24 @@ const Schema = mongoose.Schema;
 
 const ApplicationSchema = new Schema({
   
-  application: [{ type: Schema.Types.ObjectId, ref: 'applied' }],
- 
+  name :{
+    type:String,
+  },
+  email:{
+    type : String
+  },
+  bio : {
+    type:String,
+  },
+  expectation:{
+    type:String,
+   },
+   mentorName : {
+     type:String,
+   },
+   mentorId : {
+    type:String
+   },
 });
 
 module.exports = Application = mongoose.model("application", ApplicationSchema);
