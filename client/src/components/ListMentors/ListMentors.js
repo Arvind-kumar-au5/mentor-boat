@@ -6,11 +6,24 @@ import PropTypes from 'prop-types';
 import Spinner from "../Layout/Spinner"
 import ProfileItem from "./ProfileItem"
 import {Link} from "react-router-dom"
+import Pagination from "./Pagination"
 
 function ListMentors({ getProfiles, profile: { profiles, loading } }) {
+    console.log(profiles)
     useEffect(() => {
         getProfiles();
       }, [getProfiles]);
+      const [currentPage, setCurrentPage] = useState(1);
+      const [postsPerPage] = useState(5);
+      // Get current posts
+      const indexOfLastPost = currentPage * postsPerPage;
+      const indexOfFirstPost = indexOfLastPost - postsPerPage;
+      const currentPosts = profiles.slice(indexOfFirstPost, indexOfLastPost);
+      console.log(currentPosts)
+      // Change page
+      const paginate = pageNumber => setCurrentPage(pageNumber);
+
+
       
       const [Search, setSearch] = useState("")
    
@@ -41,14 +54,20 @@ function ListMentors({ getProfiles, profile: { profiles, loading } }) {
                     mentors
                 </p>
                 <div className='profiles'>
-                    {profiles.length > 0 ? (
-                    profiles.map(profile => (
+                    {currentPosts.length > 0 ? (
+                    currentPosts.map(profile => (
                         <ProfileItem key={profile._id} profile={profile} />
                        
                     ))
                     ) : (
                     <h4>No profiles found...</h4>
                     )}
+                   <Pagination
+                   postsPerPage={postsPerPage}
+                   profiles={profiles.length}
+                   paginate={paginate}
+                   />
+                  
                 </div>
                 </div>
                 </Fragment>

@@ -724,10 +724,11 @@ div {
 }
 .image.is-round img {
   position: relative;
-  margin-top: 40px;
-  margin-left: -2px;
+  margin-top: 20px;
+  margin-left:10px;
   background: #fff;
-  
+  height:160px;
+  width:160px;
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;

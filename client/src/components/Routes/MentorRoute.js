@@ -1,35 +1,30 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Spinner from "../Layout/Spinner"
 
-const MentorRoute = ({
-  component: Component,
-  mentor: { misAuthenticated, loading },
-  ...rest
-}) => (
-  <Route
-    {...rest}
-    render={props =>
-      loading ? (
-        <Spinner />
-      ) : misAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/mentor/login" />
-      )
-    }
-  />
-);
+const PrivateRoute = ({
+    component: Component,
+    ...rest
+}) => {
+    const isAuth = localStorage.getItem('token');
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                isAuth ? (
+                    <Component {...props} {...rest} />
+                ) : (
+                        <Redirect
+                            to={{
+                                pathname: "/mentor/login",
+                                state: {
+                                  from: props.location
+                                }
+                            }}
+                        />
+                    )
+                }
+        />
+    );
+}
 
-
-MentorRoute.propTypes = {
-  mentor : PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  mentor : state.mentor
-});
-
-export default connect(mapStateToProps)(MentorRoute);
+export default PrivateRoute;

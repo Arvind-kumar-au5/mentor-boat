@@ -36,11 +36,13 @@ import EditMentor from "./components/MentorDashboard/EditMentor"
 import SearchPage from "./components/Filter/SearchResult"
 import Request from "./components/MentorDashboard/Request"
 import setAuthToken from './utils/SetToken';
+import setMentorToken from "./utils/SetMentor"
 function App() {
 
   useEffect(() => {
     setAuthToken(localStorage.token);
-    store.dispatch(loadUser())
+    
+    // store.dispatch(loadUser())
     store.dispatch(loadMentor())
   }, [])
   console.log()
@@ -68,7 +70,7 @@ function App() {
             <MentorRoute exact path = "/edit/mentor" component = {EditMentor} />
             {/* */}
             <Route exact path="/mentor/profile/:id" component={SingleProfile} />
-            <PrivateRoute exact path="/mentee/edit/:id" component={Update} />
+            <PrivateRoute exact path="/mentee/edit" component={Update} />
             <PrivateRoute exact path="/mentee/auth/find" component={Mentors} />
             <Route exact path= "/mentorship/apply/:name" component = {ApplyForm}/>
             <Route exact path="/search" component={SearchPage} />

@@ -20,7 +20,7 @@ import axios from "axios"
       console.log(Search.search)
     // Submit 
   
-    if(misAuthenticated && mentor) {
+    if(misAuthenticated ) {
       return <Redirect to = "/mentor/dashboard" />
     }
     if(isAuthenticated) {

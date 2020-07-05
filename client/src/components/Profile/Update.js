@@ -1,102 +1,183 @@
-import React, { Fragment } from 'react'
-import { useState } from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import axios from "axios"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {connect} from "react-redux"
+import React, { useState } from 'react'
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import {connect} from "react-redux";
 import PropTypes from 'prop-types';
+import axios from "axios"
 
 
-function Example({register:{user}  }) {
- 
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
-  const[avatar,setAvatar] = useState("")
-  const uploadPic = async (image) => {
-    const data = new FormData();
-    data.append('file', image);
-    data.append('upload_preset', 'Mentor');
-    const res = await fetch('https://api.cloudinary.com/v1_1/dlqxpkg7h/image/upload', {
-      method: 'POST',
-      body: data
-    });
-    const file = await res.json();
-    console.log(file);
-    setAvatar({
-      avatar: file.secure_url
-    })
-    
-
-}
-const handleSubmit = () =>{
-  const updateProfile = async () => {
-    try {
-      let result = await axios.put(`/api/mentee/profile/update`, avatar)
-      console.log(result)
-      if (result) {
-        toast.warn("successfully updated")
-        window.location.reload()
-        
-      }
-    } catch (err) {
-      toast.warn("Error")
-    }
-  }
-  updateProfile()
-  handleClose()
-}
-
-
-  console.log(avatar)
-   
-
-  return (
-    <Fragment>
-      <Button variant="primary" onClick={handleShow}>
-        Edit Profile
-      </Button>
-
-      <Modal show={show} onHide={handleClose} className="container">
-        <Modal.Header closeButton style={{ "background": "linear-gradient(to right bottom, rgb(105, 142, 148), rgb(5, 50, 58))" }}>
-          <Modal.Title style={{ "color": "white" }}>Update Profile</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ToastContainer />
-          <form>
-            <div className="form-group">
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Image</label>
-                <input name="name" type="file" onChange={(e) => uploadPic(e.target.files[0])} className="form-control" placeholder="Name" />
-              </div>
-              
-            </div>
+function EditMentor({register :{user}}) {
+        const  {
+        name,
+        email,
+        avatar,
+        bio 
+    }= user
             
-            <Button variant="primary" onClick={handleSubmit}>
-              Save Changes
-          </Button>
-          </form>
-        </Modal.Body>
-        <Modal.Footer style={{ "background": "linear-gradient(to right bottom, rgb(105, 142, 148), rgb(5, 50, 58))" }}>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </Fragment>
-  );
+        const [menteedata, updateMenteeData] = useState({ name: name, email: email,bio:bio,avatar:avatar })
+        console.log(menteedata)
+        
+        const getInput = (e) => {
+            console.log(e.target.value)
+            updateMenteeData({
+              ...menteedata,
+              [e.target.name]: e.target.value
+            })
+          }
+          
+        const uploadPic = async (image) => {
+              
+              const data = new FormData();
+              data.append('file', image);
+              data.append('upload_preset', 'Mentor');
+              const res = await fetch('https://api.cloudinary.com/v1_1/dlqxpkg7h/image/upload', {
+                method: 'POST',
+                body: data
+              });
+              const file = await res.json();
+              if(file){
+                  alert('file uploaded..')
+              }
+              updateMenteeData({
+                    avatar: file.secure_url,
+                    name,
+                    email,
+                    bio 
+              })
+      
+          }
+          const handleSubmit = (e) => {
+            e.preventDefault()
+            const updateProfile = async () => {
+              try {
+                let result = await axios.post(`/api/mentee/profile/update`, menteedata)
+                if (result) {
+                    window.location.reload()
+                }
+              } catch (err) {
+                alert('Some problem..........')
+              }
+            }
+            updateProfile()
+           
+          }
+
+    return (    
+        <div>
+            <form onSubmit = {handleSubmit}>
+
+            <div className="row">
+                <div className="col-lg-6 col-md-6 col-xs-12">
+                    <div className="row">
+                        <div className="col-lg-12 col-md-12 col-xs-12">
+                            <div className="panel panel-default">
+                                <div className="panel-body">
+                                    <h2 style={{color:'black'}}>
+                                         Edit Your   Personal Information 
+                                    </h2> 
+                                    <p>
+                                    Let's introduce ourselves! You know us, we'd like to know who you are!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div className="col-lg-6 col-md-6 col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                            <FormControl>
+                                <InputLabel htmlFor="my-input" >Name</InputLabel>
+                                <Input 
+                                id="my-input" 
+                                aria-describedby="my-helper-text" 
+                                style ={{width:'270px'}} 
+                                name = "name"
+                                value={menteedata.name} 
+                                onChange={getInput}
+                                disabled
+                                />
+                            </FormControl>
+                            </div>
+                        </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6 col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                            <FormControl>
+                                <InputLabel htmlFor="my-input" >Email</InputLabel>
+                                <Input 
+                                id="my-input" 
+                                aria-describedby="my-helper-text" 
+                                style ={{width:'270px'}} 
+                                name = "email"
+                                defaultValue={menteedata.email} 
+                                onChange={getInput}
+                                disabled
+                                />
+                            </FormControl>
+                            </div>
+                        </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6 col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                            <FormControl>
+                                <InputLabel htmlFor="my-input" >Bio</InputLabel>
+                                <textarea className="textarea" name="description" cols="40" rows="5"  
+                                          name = "bio"
+                                          defaultValue={menteedata.bio} 
+                                          onChange={getInput}
+                                        >
+                                </textarea>
+                            </FormControl>
+                            </div>
+                        </div>
+                  </div>
+              
+                <div className="col-lg-6 col-md-6 col-xs-12">
+                    <div className="row">
+                    <div className="col-lg-6 col-md-6 col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                            <FormControl>
+                                <Input 
+                                id="my-input" 
+                                aria-describedby="my-helper-text" 
+                                style ={{width:'270px'}} 
+                                placeholder="Example- Maths instructor"
+                                name = "avatar"
+                                type = "file"
+                                
+                                onChange={(e) => uploadPic(e.target.files[0])} 
+                                 />
+                            </FormControl>
+                            </div>
+                        </div>
+                    </div>
+                       
+                    </div>
+                </div>
+                <hr></hr>
+              </div>
+            <hr />
+            
+            </form>
+
+        </div>
+        
+
+    )
 }
 
-// render(<Example />);
-Example.propTypes = {
-    register:PropTypes.object.isRequired,
-
+EditMentor.propTypes = {
+    register :PropTypes.object.isRequired,
+  };
   
-};
-
-const mapStateToProps = state =>({
-    register:state.register
-})
-
-export default  connect(mapStateToProps)(Example);
+  
+  const mapStateToProps = state => ({
+      register: state.register
+  });
+  
+  export default connect(mapStateToProps) (EditMentor);

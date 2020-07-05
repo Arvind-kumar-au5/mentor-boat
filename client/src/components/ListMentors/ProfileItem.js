@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {Link} from "react-router-dom"
 import {connect} from "react-redux"
-
-
-
-
-
+import Pagination from "./Pagination"
 
 const ProfileItem = ({profile,isAuthenticated}) => {
+    
+   
   return (
     <Fragment>
             <div className="row">
                 <div className="col-lg-12 col-md-12 col-xs-12 card shadow mt-3" style={{border:'2px solid #d0dce6'}}>
                     <div className="row">
-                        <div className="col-lg-4 col-md-4 col-xs-12">
+                        <div className="col-lg-2 col-md-2 col-xs-12">
                         <figure className="image is-96x96 is-round  " style={{verticalAlign:'top',marginBottom:"200px"}}>
                             <p><img src={profile.avatar}  /></p>
                         </figure>
@@ -75,24 +73,13 @@ const ProfileItem = ({profile,isAuthenticated}) => {
                                     Visit Profile
                                 </Link>
                                 </div>
-                                <div className="col-lg-6 col-md-6 col-xs-12">
-                                
-                                    <br/>
-                                </div>
-
                             </div>
-
-                          
                         </div>
-                       
                     </div>
-                    
-
                 </div>
                 
-
             </div>
-      
+          
     </Fragment>
   );
 };

@@ -3,51 +3,45 @@ import {connect} from "react-redux"
 import PropTypes from "prop-types";
 import axios from "axios"
 import Spinner from "../Layout/Spinner"
+import Accepted from "./Acceped"
+import Navbar from "../Layout/Navbar"
 
-function Request({ mentor:{mentor} }) {
+
+function Request({ mentor:{application,loading} }) {
+ 
     
-    // get All requests
-    useEffect(() => {
-        getRequest()
-      }, [getRequest])
-      const token = localStorage.getItem("token");
-      const [Request, setRequest] = useState([])
-      const [loading , setloading] = useState(true)
-      const [acceped,setAcceped] = useState(false)
-
-      const handleClick = () =>{
-          setAcceped(true)
-      }
-      
-      const getRequest = () => {
-          
-          if(mentor){
-  
-              let request = axios({
-                    method: "GET",
-                    url: `/api/applications/${mentor.first_name} ${mentor.last_name}`,
-                    headers: {
-                          "x-auth-token": token
-                    },
-              });
-              request.then(res => {
-                    console.log(res)
-                    setRequest(res.data)
-                    setloading(false)
-              })
+    const token = localStorage.getItem("token");
+    const [accepted, setaccepted] = useState({
+        accepted : true
+    })
+   
+    const handleClick = async(e,id) =>{
+        e.preventDefault()
+        
+        console.log(accepted)
+            try {   
+              let result = await axios.post(`/api/applications/request/accepted/${id}`, accepted)
+              console.log(result)
+              if (result) {
+               
+            
+              }
+            } catch (err) {
+              
+            }
           }
-    }
-
-
-
+    
+     
+    
     return (
         <div className="">
             {loading ? <Fragment>
                 <Spinner/>
             </Fragment>:
             <Fragment>
-            <h3>Total request {Request.length}</h3>
-            {Request.map((req,index)=>{
+            <h3>Total request {application.length}</h3>
+            <Navbar length = {application.length}/>
+            {application.map((req,index)=>{
                 return <div className="row" >
                    
                     <div className="col-lg-8 col-md-8 col-xs-12 card shadow ">
@@ -57,11 +51,7 @@ function Request({ mentor:{mentor} }) {
                     <span>{req.bio}</span>
                     </div>
                     <div className="col-lg-4 col-md-4 col-xs-12  mt-5">
-                        {acceped ? <Fragment>
-                            <button onClick={handleClick(index)} className="btn btn-outline-primary" disabled>Accepted </button>    
-                        </Fragment>:<Fragment>
-                            <button className="btn btn-outline-primary">Accept </button>    
-                        </Fragment>}
+                        <button onClick = {(e)=>handleClick(req._id)}  className="btn btn-outline-primary" disabled = {req.accepted}>Accept </button>    
                         <button className="btn btn-outline-danger">Reject</button> 
                     </div>
                     <div className="col-lg-2 col-md-2 col-xs-12  mt-3">
@@ -77,8 +67,10 @@ function Request({ mentor:{mentor} }) {
 
 
 
+
 Request.propTypes = {
     mentor :PropTypes.object.isRequired,
+
   };
   
   
@@ -86,4 +78,6 @@ Request.propTypes = {
       mentor: state.mentor
   });
   
-  export default connect(mapStateToProps) (Request);
+export default connect(mapStateToProps) (Request);
+
+  

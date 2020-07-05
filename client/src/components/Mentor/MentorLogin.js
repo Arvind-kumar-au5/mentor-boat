@@ -158,7 +158,7 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
 
 MentorLogin.propTypes = {
   
-  login:PropTypes.func.isRequired,
+  mentorLogin:PropTypes.func.isRequired,
   misAuthenticated:PropTypes.bool,
 
 };

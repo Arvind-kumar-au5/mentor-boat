@@ -6,7 +6,8 @@ import {
         REGISTER_FAILED,
         LOGIN_SUCCESS,
         LOGIN_FAILED,
-        LOGOUT
+        LOGOUT,
+        MENTEE_REQUEST_LOADED
     } 
 from "./type"
 
@@ -25,9 +26,15 @@ export const loadUser = () => async dispatch=>{
     try {
         const res = await axios.get('/api/auth')
 
+
         dispatch({
             type:USER_LOADED,
             payload:res.data
+        })
+        const res2 = await axios.get(`/api/applications/request/${res.data.name}`)
+        dispatch({
+            type:MENTEE_REQUEST_LOADED,
+            payload:res2.data
         })
 
     } catch (err) {

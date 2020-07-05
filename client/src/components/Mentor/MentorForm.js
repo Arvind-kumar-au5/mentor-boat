@@ -138,7 +138,7 @@ function MentorForm({mentorRegister,misAuthenticated}) {
                                 id="my-input" 
                                 aria-describedby="my-helper-text" 
                                 style ={{width:'270px'}} 
-                                placeholder="Example- Maths instructor"
+                                placeholder="Example- Maths instructor                                "
                                 name = "job_title"
                                 value={job_title} 
                                 onChange={onChnage} 

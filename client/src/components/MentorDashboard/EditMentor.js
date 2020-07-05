@@ -11,6 +11,7 @@ import {mentorRegister} from "../../actions/MentorAuth"
 import PropTypes from 'prop-types';
 import {Redirect} from "react-router-dom"
 import axios from "axios"
+import MentorProfile from "./MentorProfile"
 
 
 function EditMentor({mentor :{mentor}}) {
@@ -25,7 +26,6 @@ function EditMentor({mentor :{mentor}}) {
     }= mentor
             
         const [mentordata, updateMentorData] = useState({ job_title: job_title, location: location,highest_eduction:highest_eduction,avatar:avatar,category:category,monthly_fee:monthly_fee,bio:bio })
-        
         const getInput = (e) => {
             console.log(e.target.value)
             updateMentorData({
@@ -64,7 +64,7 @@ function EditMentor({mentor :{mentor}}) {
               try {
                 let result = await axios.post(`/api/mentor/profile/update`, mentordata)
                 if (result) {
-                  window.location.reload('/mentee/profile')  
+                    window.location.reload()
                 }
               } catch (err) {
                 alert('Some problem..........')

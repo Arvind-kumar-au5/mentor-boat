@@ -12,6 +12,9 @@ import Avatar from '@material-ui/core/Avatar';
 import KeyboardArrowDownSharpIcon from '@material-ui/icons/KeyboardArrowDownSharp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import logo from "../../image/logo3.png"
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
 
 
 
@@ -20,6 +23,16 @@ import Menu from '@material-ui/core/Menu';
 // Redux 
 import {connect} from "react-redux"
 
+
+// style
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 0,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}))(Badge);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navbar({register:{isAuthenticated,loading,user},logout,mentor:{misAuthenticated,mentor}}) {
+function Navbar({register:{isAuthenticated,loading,user},logout,mentor:{misAuthenticated,mentor},length}) {
 
  
-
+console.log(length)
   const classes = useStyles();
   
   const [anchorEl, setAnchorEl] = useState(null);
@@ -60,7 +73,9 @@ const authLinks = (
                 <Fragment>
                   <Button color="inherit">
                         <Link to = '/request'>  
-                          Request mentee's
+                          Request mentee's  <StyledBadge badgeContent={length} color="secondary">
+                            
+                          </StyledBadge>
                         </Link>
                   </Button>
                   
@@ -201,7 +216,7 @@ const authLinks = (
         <Toolbar className="navbar bg-dark">
         <Typography variant="h6" className={classes.title}>
           <Link to = '/'>
-              Mentor Boat
+              <img src = {logo} style = {{maxWidth:'50px',borderStyle:'none',border:'0'}}/>
           </Link>
         </Typography>
         

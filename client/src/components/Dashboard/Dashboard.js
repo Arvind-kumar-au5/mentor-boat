@@ -11,36 +11,8 @@ import PropTypes from 'prop-types';
 
 
 
-function Dashboard({register:{user},loadUser}) {
-    useEffect(() => {
-      getApplication()
-    }, [])
-    let history = useHistory();
-    const token = localStorage.getItem("token");
-
-    const [applied,setapplied] = useState([])
+function Dashboard({register:{user,request},loadUser}) {
     
-    const getApplication = () => {
-        
-        if(user){
-
-            let request = axios({
-                  method: "GET",
-                  url: `/api/applications/request/${user.name}`,
-                  headers: {
-                        "x-auth-token": token
-                  },
-            });
-            request.then(res => {
-                  console.log(res)
-                  setapplied(res.data)
-                  history.push('/dashboard')
-                  
-            })
-        }
-  }
-
-
     // Fetch applied Application
     
     return (
@@ -48,22 +20,24 @@ function Dashboard({register:{user},loadUser}) {
            
            <div className="row">
                    <h3>Active Aplications    <InfoIcon/></h3>
-               <div className="col-lg-12 col-md-12 col-xs-12 card shadow">
+               <div className="col-lg-12 col-md-12 col-xs-12 ">
                    <div className="row">
-                        <div className="col-lg-6 col-md-6 col-xs-6 ">
-                        <img src={application} alt={application}/>
-
-                        </div>
-                        <br/>
-                        <br/>
-                        <div><button className="btn btn-outline-info w-80" onClick={()=>window.location.reload()}>Load Application</button></div>
-                        {applied ? <Fragment>
-                            {applied && applied.map((application,index)=>{
-                            return <div className="col-lg-12 col-md-12 col-xs-12 mt-2 card shadow " key = {index}>
-                           <h4>You applied {application.mentorName}</h4> 
+                        
+                       
+                        {request ? <Fragment>
+                            {request && request.map((application,index)=>{
+                            return <div className="col-lg-4 col-md-4 col-xs-12 ml-2 mt-2 card shadow " style ={{border:"2px solid #d0dce6"}}key = {index}>
+                           <h4 style ={{color:"#304160"}}>You applied to {application.mentorName}</h4> 
                            <br/>
                            <br/>
-                            <span style={{color:"yellow",fontSize:'20px'}}>Your Status is Pending....</span>
+                           {application.accepted? <Fragment>
+                            <span style={{color:"Green",fontSize:'20px'}}>Accepted  </span>
+                           </Fragment>:
+                        <Fragment>
+                            <span style={{color:"#ffbe1b",fontSize:'20px'}}>Awaiting Response  </span>
+                        </Fragment>
+                        }
+                            
                             </div>
                             
                         })}
@@ -71,6 +45,11 @@ function Dashboard({register:{user},loadUser}) {
                         </Fragment> 
                         : 
                         <Fragment>
+                            no application
+                        <div className="col-lg-6 col-md-6 col-xs-6 ">
+                        <img src={application} alt={application}/>
+
+                        </div>
                         <div className="col-lg-6 col-md-6 col-xs-6 ">
                             <h3>Ooops!</h3>
                             <p>

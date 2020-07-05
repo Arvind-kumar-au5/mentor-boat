@@ -1,25 +1,15 @@
 import React ,{useEffect}from  'react'
-import axios from "axios"
+import {loadMentor} from "../../actions/MentorAuth"
+import store from '../../store';
+import setAuthToken from '../../utils/SetToken';
 
 export default function MentorDashboard() {
-    const token = localStorage.getItem("token");
+   
     useEffect(() => {
-        getApplication()
-    }, [])
-    const getApplication = () => {
-
-        let request = axios({
-              method: "GET",
-              url: "/api/mentorship/apply",
-              headers: {
-                    "x-auth-token": token
-              },
-        });
-        request.then(res => {
-              console.log(res)
-            
-        })
-    }
+        setAuthToken(localStorage.token);
+        store.dispatch(loadMentor())
+      }, [])
+    
     return (
         <div>
             Hello 

@@ -3,7 +3,8 @@ import {
     MENTOR_USER_LOADED,
     MENTOR_LOGIN,
     MENTOR_REGISTER,
-    MENTOR_LOGOUT
+    MENTOR_LOGOUT,
+    MENTEE_REQUEST_LOADED
 } 
 from "./type"
 
@@ -17,6 +18,7 @@ import setAuthToken from "../utils/SetToken"
 export const loadMentor = () => async dispatch=>{
 if(localStorage.token){
     setAuthToken(localStorage.token)
+    
 }
 
 try {
@@ -26,13 +28,19 @@ try {
         type:MENTOR_USER_LOADED,
         payload:res.data
     })
+    const res2 = await axios.get(`/api/applications/${res.data.first_name} ${res.data.last_name}`)
+    dispatch({
+        type:MENTEE_REQUEST_LOADED,
+        payload:res2.data
+    })
+    
 
 } catch (err) {
     // dispatch({
     //     type:AUTH_ERROR,
 
     // })
-    
+    console.log(err)
 }
 
 }

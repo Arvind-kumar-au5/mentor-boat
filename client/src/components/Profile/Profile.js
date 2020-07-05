@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 // Redux 
 import {connect} from "react-redux"
 import {loadUser} from "../../actions/auth"
+import { useDispatch } from 'react-redux'
+
 
 import PropTypes from 'prop-types';
 
@@ -31,26 +33,30 @@ const useStyles = makeStyles((theme) => ({
 
 // Profile
 
+
  
 
 
 
 function Profile({register:{user},loadUser}) {
   
-    useEffect(() => {
-        loadUser()
-    }, [loadUser])
-    
+    const dispatch = useDispatch()
+
   
   const token = localStorage.getItem("token");
 // For profile data
     let { name, email ,bio,avatar} = user
+    console.log(user.name)
+    const [userdata, updateUserData] = useState({name: name, email: email,bio:email,avatar:avatar })
+    
+    
+    console.log(userdata)
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     
-    const [userdata, updateUserData] = useState({ name: name, email: email,bio:bio,avatar:avatar })
+   
     const getInput = (e) => {
       console.log(e.target.value)
       updateUserData({
@@ -90,7 +96,7 @@ function Profile({register:{user},loadUser}) {
           console.log(result)
           if (result) {
             toast.warn("successfully updated")
-            window.location.reload('/mentee/profile')
+            
             
             
           }
@@ -132,9 +138,7 @@ function Profile({register:{user},loadUser}) {
                         <div class="col-lg-3 col-md-3 col-xs-12">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                <figure className="image is-96x96 is-round profile-image profile-photo-edit" style={{verticalAlign:'top',marginBottom:"200px"}}>
-                                    <p><img src={user && user.avatar}  /></p>
-                                </figure>
+                                <img src={user.avatar} className="mb-5" style= {{heigh:"120px" ,width:'120px',borderRadius:'100%',marginTop:'-100px'}}/>
                                 
                                 </div>
                             </div>

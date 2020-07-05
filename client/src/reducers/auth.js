@@ -5,7 +5,8 @@ import {
     REGISTER_FAILED,
     LOGIN_SUCCESS,
     LOGIN_FAILED,
-    LOGOUT
+    LOGOUT,
+    MENTEE_REQUEST_LOADED
     
 } from "../actions/type"
 
@@ -15,7 +16,8 @@ const intialState = {
     token:localStorage.getItem('token'),
     isAuthenticated:null,
     loading:false,
-    user:null
+    user:null,
+    request:[]
 }
 
 export default function(state = intialState,action) {
@@ -29,6 +31,12 @@ export default function(state = intialState,action) {
                 loading:false,
                 user:payload
             }
+        case MENTEE_REQUEST_LOADED:
+                return{
+                    ...state,
+                    loading:false,
+                    request:payload
+                }
         
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
