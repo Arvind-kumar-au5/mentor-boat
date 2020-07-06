@@ -38,6 +38,7 @@
     ]
   },
   "proxy": "https://mentor-boat.herokuapp.com/",
+  "homepage": ".",
   "devDependencies": {
     "extract-text-webpack-plugin": "^4.0.0-beta.0"
   }
