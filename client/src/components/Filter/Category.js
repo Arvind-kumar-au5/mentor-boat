@@ -11,11 +11,13 @@ export default function SearchResult({match,location}) {
     
     
     const getCategory = () =>{
+        
 
         let request = axios({
                method: "GET",
                url: `/api/filter/mentor/rxy/ryz/${match.params.category}`,
-               
+               headers: {'Content-Type': 'application/json'}
+ 
          });
          request.then(res => {
                console.log(res)
