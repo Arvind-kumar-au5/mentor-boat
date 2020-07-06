@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // Express serve up index.html file if it doesn't recognize route
   const path = require('path');
-  app.get("/", (req, res) => {
+  app.get("*", (req, res) => {
   let url = path.join(__dirname, 'client/build', 'index.html');
   if (!url.startsWith('/app/')) // since we're on local windows
     url = url.substring(1);
