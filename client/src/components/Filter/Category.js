@@ -4,8 +4,8 @@ import SearchItem from "./SearchItem"
 
 export default function SearchResult({match,location}) {
     useEffect(() => {
-        getCategory()
-    }, [])
+        getCategory(match.params.category)
+    }, [getCategory,match.params.category])
     const [userData, setuserData] = useState({})
     console.log(userData)
     
