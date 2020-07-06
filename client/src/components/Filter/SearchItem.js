@@ -2,8 +2,9 @@ import React, { Fragment ,useState} from 'react';
 import PropTypes from 'prop-types';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {Link} from "react-router-dom"
+import {connect} from "react-redux"
 
-const SearchItem = ({profile}) => {
+const SearchItem = ({profile,isAuthenticated}) => {
   return (
     <Fragment>
             <div className="row">
@@ -53,9 +54,18 @@ const SearchItem = ({profile}) => {
                             ₹{profile.monthly_fee}   <span>per  month</span>
                             <div className="row">
                                 <div className="col-lg-10 col-md-10 col-xs-12">
-                                <Link to={`/mentorship/apply/${profile.first_name}/`} className='btn btn-primary'>
+                                {isAuthenticated ? <Fragment>
+                                <Link to={`/mentorship/apply/${profile.first_name} ${profile.last_name}`} className='btn btn-primary'>
                                     Apply for Mentorship
                                 </Link>
+
+                                </Fragment>:<Fragment>
+                                
+                                <Link to="/login" className='btn btn-primary'>
+                                    Apply for Mentorship
+                                </Link>
+
+                                </Fragment>}
                                 <Link to={`/mentor/profile/${profile._id}`} className="btn btn-outline-primary " style={{width:'180px'}}>
                                     Visit Profile
                                 </Link>
@@ -83,9 +93,14 @@ const SearchItem = ({profile}) => {
 };
 
 SearchItem.propTypes = {
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    isAuthenticated:PropTypes.bool,
 };
 
+const mapStateToProps = state => ({
+    isAuthenticated: state.register.isAuthenticated
+});
 
 
-export default SearchItem
+export default connect(mapStateToProps)(SearchItem)
+
