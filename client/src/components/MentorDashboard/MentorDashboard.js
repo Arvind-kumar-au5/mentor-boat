@@ -1,18 +1,26 @@
 import React ,{useEffect}from  'react'
-import {loadMentor} from "../../actions/MentorAuth"
-import store from '../../store';
-import setAuthToken from '../../utils/SetToken';
+import {connect} from "react-redux"
+import PropTypes from "prop-types";
 
-export default function MentorDashboard() {
+
+function MentorDashboard({mentor:{mentor}}) {
    
-    useEffect(() => {
-        setAuthToken(localStorage.token);
-        store.dispatch(loadMentor())
-      }, [])
+   
     
     return (
         <div>
-            Hello 
+            <h3>Hey {mentor.first_name} Check Your Request Tab 😃</h3>
         </div>
     )
 }
+
+MentorDashboard.propTypes = {
+    mentor :PropTypes.object.isRequired,
+  };
+  
+  
+  const mapStateToProps = state => ({
+      mentor: state.mentor
+  });
+  
+  export default connect(mapStateToProps) (MentorDashboard);

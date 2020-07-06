@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
 import FormHelperText from "@material-ui/core/FormHelperText"
 import FormControl from '@material-ui/core/FormControl';
@@ -7,15 +7,18 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import {connect} from "react-redux";
-import {mentorRegister} from "../../actions/MentorAuth"
+import {mentorRegister, loadMentor} from "../../actions/MentorAuth"
 import PropTypes from 'prop-types';
 import {Redirect} from "react-router-dom"
 import axios from "axios"
 import MentorProfile from "./MentorProfile"
+import store from '../../store';
+import { useHistory } from "react-router-dom";
 
 
 function EditMentor({mentor :{mentor}}) {
-        const  {
+    
+        let  {
         job_title,
         location,
         highest_eduction,
@@ -24,8 +27,14 @@ function EditMentor({mentor :{mentor}}) {
         avatar,
         bio 
     }= mentor
+    console.log(mentor)
+    useEffect(() => {
+        updateMentorData(mentor)
+    }, [])
             
-        const [mentordata, updateMentorData] = useState({ job_title: job_title, location: location,highest_eduction:highest_eduction,avatar:avatar,category:category,monthly_fee:monthly_fee,bio:bio })
+       const [mentordata, updateMentorData] = useState(mentor && { job_title: job_title, location: location,highest_eduction:highest_eduction,avatar:avatar,category:category,monthly_fee:monthly_fee,bio:bio })
+       
+   
         const getInput = (e) => {
             console.log(e.target.value)
             updateMentorData({
@@ -58,13 +67,18 @@ function EditMentor({mentor :{mentor}}) {
               })
       
           }
+          let history = useHistory();
           const handleSubmit = (e) => {
             e.preventDefault()
             const updateProfile = async () => {
               try {
                 let result = await axios.post(`/api/mentor/profile/update`, mentordata)
                 if (result) {
+                    
+                    history.push('/mentor/profile')
                     window.location.reload()
+                    
+                                
                 }
               } catch (err) {
                 alert('Some problem..........')
@@ -143,7 +157,7 @@ function EditMentor({mentor :{mentor}}) {
                                     <InputLabel id="label">Location </InputLabel>
                                     <Select labelId="label" id="select"  style ={{width:'270px'}} 
                                      name = "location"
-                                     defaultValue={mentordata.location} 
+                                     defaultValue={mentordata && mentordata.location} 
                                      onChange={getInput}
 
                                     >
@@ -163,7 +177,7 @@ function EditMentor({mentor :{mentor}}) {
                                         <InputLabel id="label">Higher Education </InputLabel>
                                         <Select labelId="label" id="select"  style ={{width:'270px'}}
                                         name = "highest_eduction"
-                                        defaultValue={mentordata.highest_eduction} 
+                                        defaultValue={mentordata && mentordata.highest_eduction} 
                                         onChange={getInput}
                                         >
                                             <MenuItem value="12th">12th</MenuItem>
@@ -204,7 +218,7 @@ function EditMentor({mentor :{mentor}}) {
                                         <InputLabel id="label">CATEGORY </InputLabel>
                                         <Select labelId="label" id="select"  style ={{width:'270px'}}
                                         name = "category"
-                                        defaultValue={mentordata.category} 
+                                        defaultValue={mentordata && mentordata.category} 
                                         onChange={getInput}
 
                                         >
@@ -223,7 +237,7 @@ function EditMentor({mentor :{mentor}}) {
                                         <InputLabel htmlFor="my-input" >MONTHLY FEE IN RS :</InputLabel>
                                         <Input id="my-input" aria-describedby="my-helper-text" style ={{width:'270px'}} 
                                           name = "monthly_fee"
-                                          defaultValue={mentordata.monthly_fee} 
+                                          defaultValue={mentordata && mentordata.monthly_fee} 
                                           onChange={getInput}
     
                                         />
@@ -245,7 +259,7 @@ function EditMentor({mentor :{mentor}}) {
                                        
                                         <textarea className="textarea" name="description" cols="40" rows="5"  
                                           name = "bio"
-                                          defaultValue={mentordata.bio} 
+                                          defaultValue={mentordata && mentordata.bio} 
                                           onChange={getInput}
                                         >
                                         </textarea>

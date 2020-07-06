@@ -7,7 +7,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 
-function SingleProfile({getProfileById,match,profile}) {
+function SingleProfile({getProfileById,match,profile,isAuthenticated}) {
     console.log(profile.tags)
     useEffect(() => {
       getProfileById(match.params.id)
@@ -21,6 +21,9 @@ function SingleProfile({getProfileById,match,profile}) {
         <div className="row ">
            
             <div className="col-lg-9 col-md-9 col-xs-6 card shadow mt-5" style={{border:'2px solid #d0dce6'}}>
+            <figure className="image is-96x96 is-round  " style={{verticalAlign:'top',marginBottom:"100px"}}>
+                            <p><img src={profile.avatar}  /></p>
+            </figure>
                 
                 <h3 className="title is-4 title-blue nametag mt-3" style={{fontSize: '1.2rem', fontWeight: 'bold'}}> {profile.first_name}  {profile.last_name} </h3>
                 <span  className="mr-3"><LocationOnIcon style ={{color:'#00d1b2!important'}} /> {profile.location}</span>
@@ -52,9 +55,18 @@ function SingleProfile({getProfileById,match,profile}) {
                 </p>
                 </div>
                 <br/>
-                <Link to='/mentorship/apply' className='btn btn-primary w-100' >
-                    Apply for Mentorship
-                </Link>
+                {isAuthenticated ? <Fragment>
+                    <Link to={`/mentorship/apply/${profile.first_name} ${profile.last_name}`} className='btn btn-primary'>
+                        Apply for Mentorship
+                    </Link>
+
+                    </Fragment>:<Fragment>
+                    
+                    <Link to="/login" className='btn btn-primary'>
+                        Apply for Mentorship
+                    </Link>
+
+                    </Fragment>}
 
                 <br/>
                 <hr/>
@@ -74,10 +86,12 @@ function SingleProfile({getProfileById,match,profile}) {
 SingleProfile.propTypes = {
     getProfileById:PropTypes.func.isRequired,
     profile : PropTypes.object.isRequired,
+    isAuthenticated:PropTypes.bool,
 
 }
 const mapStateToProps = state => ({
-    profile: state.profile.profile
+    profile: state.profile.profile,
+    isAuthenticated: state.register.isAuthenticated
 });
 
 export default connect(mapStateToProps,{getProfileById})(SingleProfile)

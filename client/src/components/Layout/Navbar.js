@@ -53,7 +53,7 @@ console.log(length)
   const classes = useStyles();
   
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const [state, setstate] = useState()
   function handleClick(event) {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
@@ -73,7 +73,7 @@ const authLinks = (
                 <Fragment>
                   <Button color="inherit">
                         <Link to = '/request'>  
-                          Request mentee's  <StyledBadge badgeContent={length} color="secondary">
+                           mentee's Request <StyledBadge badgeContent={length} color="secondary">
                             
                           </StyledBadge>
                         </Link>
@@ -185,12 +185,12 @@ const authLinks = (
               MenuListProps={{ onMouseLeave: handleClose }}
             >
               <MenuItem onClick={handleClose}>
-                <Link style={{ color: 'black' }}  to="/mentor/jee">
+                <Link style={{ color: 'black' }}  to="/mentor/JEE">
                     JEE MENTOR
                 </Link>
                 </MenuItem>
               <MenuItem onClick={handleClose}>
-               <Link style={{ color: 'black' }}  to= "/mentor/gate">
+               <Link style={{ color: 'black' }}  to= "/mentor/GATE">
                     GATE MENTOR 
                </Link>
     

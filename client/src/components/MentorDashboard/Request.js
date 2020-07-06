@@ -8,28 +8,45 @@ import Navbar from "../Layout/Navbar"
 
 
 function Request({ mentor:{application,loading} }) {
+    
  
     
     const token = localStorage.getItem("token");
     const [accepted, setaccepted] = useState({
         accepted : true
     })
-   
+//    accept
     const handleClick = async(e,id) =>{
         e.preventDefault()
-        
         console.log(accepted)
             try {   
               let result = await axios.post(`/api/applications/request/accepted/${id}`, accepted)
               console.log(result)
               if (result) {
-               
+               window.location.reload()
             
               }
             } catch (err) {
               
             }
           }
+    
+// Reject
+const handleReject = async(e,id) =>{
+    e.preventDefault()
+    
+    console.log(accepted)
+        try {   
+          let result = await axios.delete(`/api/applications/mentee/request/delete/${id}`)
+          console.log(result)
+          if (result) {
+           window.location.reload()
+        
+          }
+        } catch (err) {
+          
+        }
+      }
     
      
     
@@ -51,8 +68,8 @@ function Request({ mentor:{application,loading} }) {
                     <span>{req.bio}</span>
                     </div>
                     <div className="col-lg-4 col-md-4 col-xs-12  mt-5">
-                        <button onClick = {(e)=>handleClick(req._id)}  className="btn btn-outline-primary" disabled = {req.accepted}>Accept </button>    
-                        <button className="btn btn-outline-danger">Reject</button> 
+                        <button onClick = {(e)=>handleClick(e,req._id)}  className="btn btn-outline-primary" disabled = {req.accepted}>Accept </button>    
+                        <button className="btn btn-outline-danger" onClick = {(e)=>handleReject(e,req._id)} >Reject</button> 
                     </div>
                     <div className="col-lg-2 col-md-2 col-xs-12  mt-3">
                    

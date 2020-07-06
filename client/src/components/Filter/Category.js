@@ -4,17 +4,17 @@ import SearchItem from "./SearchItem"
 
 export default function SearchResult({match,location}) {
     useEffect(() => {
-        getSearch()
+        getCategory()
     }, [])
     const [userData, setuserData] = useState({})
     console.log(userData)
     
     
-    const getSearch = () =>{
+    const getCategory = () =>{
 
         let request = axios({
                method: "GET",
-               url: `/api/filter/search/mentor/${location.search}`,
+               url: `/api/filter/mentor/rxy/ryz/${match.params.category}`,
                
          });
          request.then(res => {

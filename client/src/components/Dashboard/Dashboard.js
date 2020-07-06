@@ -8,12 +8,16 @@ import {connect} from "react-redux"
 import {loadUser} from "../../actions/auth"
 import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
-
+import store from '../../store';
+import setAuthToken from '../../utils/SetToken';
 
 
 function Dashboard({register:{user,request},loadUser}) {
     
     // Fetch applied Application
+    useEffect(() => {
+        loadUser()
+      }, [])
     
     return (
        <div>

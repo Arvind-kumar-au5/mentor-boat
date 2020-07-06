@@ -139,7 +139,7 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/register" variant="body2">
+              <Link to="/mentor/apply" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -149,9 +149,7 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Box mt={5} align="center">
-        <Button color="primary" variant="contained">Login with google</Button>
-      </Box>
+     
     </Container>
   );
 }

@@ -36,15 +36,16 @@ import EditMentor from "./components/MentorDashboard/EditMentor"
 import SearchPage from "./components/Filter/SearchResult"
 import Request from "./components/MentorDashboard/Request"
 import setAuthToken from './utils/SetToken';
-import setMentorToken from "./utils/SetMentor"
+import Category from "./components/Filter/Category"
+
 function App() {
 
   useEffect(() => {
     setAuthToken(localStorage.token);
-    
-    // store.dispatch(loadUser())
+    store.dispatch(loadUser())
     store.dispatch(loadMentor())
   }, [])
+  
   console.log()
 
   return (
@@ -53,7 +54,7 @@ function App() {
         <Fragment>
          <Navbar/>
         
-         <section className="container">
+         <section className="container" >
          <Alerts/>
           <Switch>
             <Route exact path="/" component={Landing} />
@@ -76,6 +77,7 @@ function App() {
             <Route exact path="/search" component={SearchPage} />
             <PrivateRoute exact path="/search/auth" component={SearchPage} />
             <MentorRoute exact path = "/request" component = {Request} />
+            <Route exact path = "/mentor/:category" component = {Category}/>
             <Route component={NotFound} />
           </Switch>
         </section>

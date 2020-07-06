@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 export default function Footer() {
     return (
         <div>
-             <footer className='footer mt-auto py-3 bg-dark text-white'>
+             <footer className=' mt-auto py-3 bg-dark text-white'>
                  <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-4 col-md-6 col-xs-12">

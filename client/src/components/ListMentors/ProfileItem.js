@@ -77,7 +77,7 @@ const ProfileItem = ({profile,isAuthenticated}) => {
                         </div>
                     </div>
                 </div>
-                
+             
             </div>
           
     </Fragment>

@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 
 function ApplyForm({register:{isAuthenticated,user},match}) {
     let history = useHistory();
+ 
    const  {name,email} = user
    console.log(name,email)
    const [Application, setApplication] = useState({

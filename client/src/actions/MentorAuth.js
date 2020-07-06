@@ -71,15 +71,13 @@ try {
 
 } catch (err) {
     const errors = err.response.data.errors;
-    const haveMentor = err.response.data[0].errors
+ 
 
     
     if (errors) {
       errors.forEach(error => dispatch(setValidation(error.msg, 'error')));
     }
-    if (haveMentor) {
-        dispatch(setValidation(haveMentor, 'error'))
-      }
+    
 
 }
 }

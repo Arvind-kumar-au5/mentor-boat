@@ -36,6 +36,7 @@ export default function(state = intialState,action) {
                     ...state,
                     loading:false,
                     request:payload
+
                 }
         
         case REGISTER_SUCCESS:
@@ -47,7 +48,6 @@ export default function(state = intialState,action) {
                 loading:false,
                 isAuthenticated:true
             }
-        case AUTH_ERROR:
         case REGISTER_FAILED:
         case LOGIN_FAILED:
         case LOGOUT:
