@@ -185,12 +185,12 @@ const authLinks = (
               MenuListProps={{ onMouseLeave: handleClose }}
             >
               <MenuItem onClick={handleClose}>
-                <Link style={{ color: 'black' }}  to="/mentor/JEE">
+                <Link style={{ color: 'black' }}  to="/search/?q=JEE">
                     JEE MENTOR
                 </Link>
                 </MenuItem>
               <MenuItem onClick={handleClose}>
-               <Link style={{ color: 'black' }}  to= "/mentor/GATE">
+               <Link style={{ color: 'black' }}  to= "/search/?q=GATE">
                     GATE MENTOR 
                </Link>
     

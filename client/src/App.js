@@ -36,7 +36,7 @@ import EditMentor from "./components/MentorDashboard/EditMentor"
 import SearchPage from "./components/Filter/SearchResult"
 import Request from "./components/MentorDashboard/Request"
 import setAuthToken from './utils/SetToken';
-import Category from "./components/Filter/Category"
+// import Category from "./components/Filter/Category"
 
 function App() {
 
@@ -77,7 +77,7 @@ function App() {
             <Route exact path="/search" component={SearchPage} />
             <PrivateRoute exact path="/search/auth" component={SearchPage} />
             <MentorRoute exact path = "/request" component = {Request} />
-            <Route exact path = "/mentor/:category" component = {Category}/>
+            {/* <Route exact path = "/mentor/:category" component = {Category}/> */}
             <Route component={NotFound} />
           </Switch>
         </section>
