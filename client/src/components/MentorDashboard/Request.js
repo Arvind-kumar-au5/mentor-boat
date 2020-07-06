@@ -20,14 +20,14 @@ function Request({ mentor:{application,loading} }) {
         e.preventDefault()
         console.log(accepted)
             try {   
-              let result = await axios.post(`https://mentor-boat.herokuapp.com/api/applications/request/accepted/${id}`, accepted)
+              let result = await axios.post(`/api/applications/request/accepted/${id}`, accepted)
               console.log(result)
               if (result) {
                window.location.reload()
             
               }
             } catch (err) {
-              console.log(err)
+              
             }
           }
     
@@ -37,7 +37,7 @@ const handleReject = async(e,id) =>{
     
     console.log(accepted)
         try {   
-          let result = await axios.delete(`https://mentor-boat.herokuapp.com/api/applications/mentee/request/delete/${id}`)
+          let result = await axios.delete(`/api/applications/mentee/request/delete/${id}`)
           console.log(result)
           if (result) {
            window.location.reload()
