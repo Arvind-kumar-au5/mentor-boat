@@ -20,7 +20,7 @@ function Request({ mentor:{application,loading} }) {
         e.preventDefault()
         console.log(accepted)
             try {   
-              let result = await axios.post(`/api/applications/request/accepted/${id}`, accepted)
+              let result = await axios.post(`/api/applications/request/accepted/xyz/${id}`, accepted)
               console.log(result)
               if (result) {
                window.location.reload()
@@ -32,15 +32,16 @@ function Request({ mentor:{application,loading} }) {
           }
     
 // Reject
+
 const handleReject = async(e,id) =>{
     e.preventDefault()
     
     console.log(accepted)
         try {   
-          let result = await axios.delete(`/api/applications/mentee/request/delete/${id}`)
+          let result = await axios.delete(`/api/applications/mentee/request/delete/xyz/${id}`)
           console.log(result)
           if (result) {
-           window.location.reload()
+           
         
           }
         } catch (err) {
