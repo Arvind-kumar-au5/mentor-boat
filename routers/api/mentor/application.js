@@ -84,6 +84,42 @@ router.get('/request/:name',auth,async (req,res)=>{
       
 })
 
+
+// Accepted Request update 
+router.post('/request/accepted/xyz/:id',auth,async(req,res)=>{
+
+    const { 
+        accepted
+    } = req.body
+    let acc = await Application.findOne({ _id: req.params.id })
+     acc.accepted=accepted
+     acc.save();
+     res.send(acc)
+    
+})
+
+// Reject Request update 
+router.delete('/mentee/request/delete/xyz/:id', auth, async (req, res) => {
+    try {
+      const request = await Application.findById(req.params.id);
+  
+      if (!request) {
+        return res.status(404).json({ msg: 'Request not found' });
+      }
+  
+     
+  
+      await request.remove();
+  
+      res.json({ msg: 'Req removed' });
+    } catch (err) {
+      console.error(err.message);
+  
+      res.status(500).send('Server Error');
+    }
+});
+
+
 router.get('/mentee/application', auth, async (req, res) => {
     try {
       const profile = await Application.findOne({

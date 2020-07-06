@@ -23,6 +23,15 @@ const ApplicationSchema = new Schema({
    mentorId : {
     type:String
    },
+   accepted : {
+     type:Boolean,
+     default:false
+   },
+   rejected : {
+    type:Boolean,
+    default:false
+  },
+
 });
 
 module.exports = Application = mongoose.model("application", ApplicationSchema);

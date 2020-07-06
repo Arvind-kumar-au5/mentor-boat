@@ -43,7 +43,7 @@ app.use('/api/mentorship',require('./routers/api/mentee/applied'))
 app.use('/api/applications',require('./routers/api/mentor/application'))
 
 // for forgot password
-// app.use('/api/user/password',require('./routers/api/mentee/NewPass'))
+app.use('/api/user/password',require('./routers/api/mentee/auth'))
 
 // FOR PRODUCATUION 
 if (process.env.NODE_ENV === 'production') {
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // Express serve up index.html file if it doesn't recognize route
   const path = require('path');
-  app.get("*", (req, res) => {
+  app.get("/", (req, res) => {
   let url = path.join(__dirname, 'client/build', 'index.html');
   if (!url.startsWith('/app/')) // since we're on local windows
     url = url.substring(1);

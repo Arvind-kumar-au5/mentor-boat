@@ -16,9 +16,10 @@ const MentorProfile = require('../../../models/Mentor/mentor')
    @access Public
 */
 
-router.get('/:category',async(req,res)=>{
+router.get('/mentor/rxy/ryz/:category',async(req,res)=>{
         try {
             const categoryData = await MentorProfile.find({ category: req.params.category })
+            console.log(categoryData)
             if (categoryData === []) return res.status(400).json({ msg: 'Category data not found' });
             res.json(categoryData)
             
