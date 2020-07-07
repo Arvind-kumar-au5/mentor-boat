@@ -42,7 +42,7 @@ const handleReject = async(e,id) =>{
           console.log(result)
           if (result) {
            
-        
+            window.location.reload()
           }
         } catch (err) {
           
