@@ -143,7 +143,7 @@ function EditMentor({mentor :{mentor}}) {
                                     style ={{width:'270px'}} 
                                     placeholder="Example- Maths instructor"
                                     name = "job_title"
-                                    value={job_title} 
+                                    defaultValue={mentordata && mentordata.job_title} 
                                     onChange={getInput}
                                     />
                                 </FormControl>

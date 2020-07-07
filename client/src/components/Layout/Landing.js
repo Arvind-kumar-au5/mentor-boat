@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, Fragment } from 'react'
 import {Link,Redirect} from "react-router-dom"
 import {connect} from "react-redux"
 import PropTypes from 'prop-types'
@@ -33,10 +33,22 @@ import axios from "axios"
                     <h2>Find Mentor</h2>
                     <form id="home-search">
                       
-                      <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autoComplete="off" tabIndex="1" id="autocomplete" onChange={onChange}/>
+                      <input type="text" name="search" placeholder="Try &quot;OS &quot; or &quot;Physics &quot;" autoComplete="off" tabIndex="1" id="autocomplete" onChange={onChange} value={Search.search}/>
+                      {Search ? <Fragment>
                       <Link to={`/search/?q=${Search.search}`}>
                           <button type="submit" >Find my mentor</button>
                       </Link>
+
+                      </Fragment>:
+                    <Fragment>
+                    
+                      <Link to='/mentor/find'>
+                          <button type="submit" >Find my mentor</button>
+                      </Link>
+
+                    </Fragment>
+                    }
+                      
                     </form>
              
               <div className="col-lg-6 col-md-6 col-xs-12 mt-5">

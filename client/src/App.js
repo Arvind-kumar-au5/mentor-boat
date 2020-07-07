@@ -37,6 +37,8 @@ import SearchPage from "./components/Filter/SearchResult"
 import Request from "./components/MentorDashboard/Request"
 import setAuthToken from './utils/SetToken';
 // import Category from "./components/Filter/Category"
+import About from "./components/Layout/AboutUs"
+import AboutUs from './components/Layout/AboutUs';
 
 function App() {
 
@@ -78,6 +80,7 @@ function App() {
             <PrivateRoute exact path="/search/auth" component={SearchPage} />
             <MentorRoute exact path = "/request" component = {Request} />
             {/* <Route exact path = "/mentor/:category" component = {Category}/> */}
+            <Route exact path= "/about" component = {AboutUs}/>
             <Route component={NotFound} />
           </Switch>
         </section>
