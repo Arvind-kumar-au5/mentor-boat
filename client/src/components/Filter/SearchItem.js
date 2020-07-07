@@ -16,7 +16,7 @@ const SearchItem = ({profile,isAuthenticated}) => {
                             <p><img src={profile.avatar}  /></p>
                         </figure>
                         </div>
-                        <div className="col-lg-4 col-md-4 col-xs-12">
+                        <div className="col-lg-6 col-md-6 col-xs-12">
                                 <h3 className="title is-4 title-blue nametag mt-3" style={{fontSize: '1.2rem', fontWeight: 'bold'}}> {profile.first_name}  {profile.last_name} 
                                 </h3>
                                 <span className="has-text-grey " style={{fontSize: '1.1rem', fontWeight: '500'}}>{profile.job_title}({profile.category})</span>
