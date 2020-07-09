@@ -1,92 +1,90 @@
-import React, {useState} from'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {Link,Redirect} from "react-router-dom"
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { Link, Redirect } from "react-router-dom";
 
-// Redux 
-import {connect} from "react-redux"
-import { login } from '../../actions/auth';
+// Redux
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" to="https://material-ui.com/">
         Mentor Boat
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
-function SignIn({login,isAuthenticated}) {
+function SignIn({ login, isAuthenticated }) {
   const classes = useStyles();
 
-  // Hooks 
+  // Hooks
   const [formData, setformData] = useState({
-    email:'',
-    password:'',
+    email: "",
+    password: "",
     toLoginafterRedirect: false
-  })
+  });
 
-  const {email,password} = formData
+  const { email, password } = formData;
 
-  // OnChnage 
-  const onChnage = (e)=>{
-    setformData({...formData,[e.target.name]:e.target.value})
-  }
+  // OnChnage
+  const onChnage = e => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  // Onsubmit 
+  // Onsubmit
 
-  const onSubmit = (e)=>{
-    e.preventDefault()
-    console.log(password)
-    login(email,password)
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log(password);
+    login(email, password);
     setTimeout(() => {
       setformData(() => ({ toLoginafterRedirect: true }));
     }, 1000);
-  }
+  };
 
-  // Authenticated 
-  if (isAuthenticated){
-      return <Redirect to="/dashboard"/>
+  // Authenticated
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
   }
-
 
   return (
-    
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -96,10 +94,9 @@ function SignIn({login,isAuthenticated}) {
         <Typography component="h1" variant="h5">
           Sign In as a mentee
         </Typography>
-        <form className={classes.form} noValidate onSubmit= {onSubmit}>
-         
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -107,11 +104,11 @@ function SignIn({login,isAuthenticated}) {
             label="email;"
             type="email"
             id="email"
-            value = {email}
-            onChange = {onChnage}
+            value={email}
+            onChange={onChnage}
           />
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -119,10 +116,10 @@ function SignIn({login,isAuthenticated}) {
             label="password;"
             type="password"
             id="password"
-            value = {password}
-            onChange = {onChnage}
+            value={password}
+            onChange={onChnage}
           />
-         
+
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -134,7 +131,7 @@ function SignIn({login,isAuthenticated}) {
             color="primary"
             className={classes.submit}
           >
-            Sign In 
+            Sign In
           </Button>
           <Grid container>
             <Grid item xs>
@@ -154,23 +151,21 @@ function SignIn({login,isAuthenticated}) {
         <Copyright />
       </Box>
       <Box mt={5} align="center">
-        <Button color="primary" variant="contained">Login with google</Button>
+        <Button color="primary" variant="contained">
+          Login with google
+        </Button>
       </Box>
     </Container>
   );
 }
 
 SignIn.propTypes = {
-  
-  login:PropTypes.func.isRequired,
-  isAuthenticated:PropTypes.bool,
-
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state =>({
-  isAuthenticated:state.register.isAuthenticated
-})
+const mapStateToProps = state => ({
+  isAuthenticated: state.register.isAuthenticated
+});
 
-
-
-export default connect(mapStateToProps,{login}) (SignIn);
+export default connect(mapStateToProps, { login })(SignIn);

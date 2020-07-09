@@ -6,9 +6,8 @@
 //     LOGIN_SUCCESS,
 //     LOGIN_FAILED,
 //     LOGOUT
-    
-// } from "../actions/type"
 
+// } from "../actions/type"
 
 // // Auth intial state
 // const intialState = {
@@ -20,7 +19,7 @@
 
 // export default function(state = intialState,action) {
 //     const {type,payload} =action
-    
+
 //     switch(type){
 //         case REQUEST_LOADED:
 //             return{
@@ -31,5 +30,5 @@
 //         default:
 //             return state
 //     }
-    
+
 // }

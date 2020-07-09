@@ -4,37 +4,34 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const UserSchema = new Schema({
-  googleId:{
-    type:String,
+  googleId: {
+    type: String
   },
 
   name: {
-    type: String,
-   
+    type: String
   },
   email: {
-    type: String,
-    
+    type: String
   },
   password: {
-    type: String,
-    
+    type: String
   },
 
   avatar: {
     type: String
   },
-  image:{
-    type:String
+  image: {
+    type: String
   },
-  
-  bio : {
-    type:String
+
+  bio: {
+    type: String
   },
-  exp : {
-    type:String
+  exp: {
+    type: String
   },
-  
+
   date: {
     type: Date,
     default: Date.now

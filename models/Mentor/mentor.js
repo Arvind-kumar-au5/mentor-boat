@@ -4,68 +4,63 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const MentorSchema = new Schema({
-
-  applied: { type: Schema.Types.ObjectId, ref: 'applied' },
+  applied: { type: Schema.Types.ObjectId, ref: "applied" },
 
   first_name: {
-    type: String,
-   
+    type: String
   },
   last_name: {
-    type: String,
-    
+    type: String
   },
-  email:{
-      type:String,
+  email: {
+    type: String
   },
   password: {
-    type: String,
-    
+    type: String
   },
-  job_title:{
-      type:String,
+  job_title: {
+    type: String
   },
-  location:{
-      type:String
+  location: {
+    type: String
   },
-  highest_eduction:{
-      type:String
+  highest_eduction: {
+    type: String
   },
-//   Mentorship question
-  category:{
-        type:String
+  //   Mentorship question
+  category: {
+    type: String
   },
-  tags:{
+  tags: {
     type: [String],
-    required:true
+    required: true
   },
- 
-  monthly_fee:{
-    type:Number
+
+  monthly_fee: {
+    type: Number
   },
-  bio:{
-      type:String
+  bio: {
+    type: String
   },
   date: {
     type: Date,
     default: Date.now
   },
-  type : {
-    type : String,
-    default:"Mentor",
+  type: {
+    type: String,
+    default: "Mentor"
   },
-  application : [
+  application: [
     {
-    type:Schema.Types.ObjectId,
-    ref:"application"
+      type: Schema.Types.ObjectId,
+      ref: "application"
     }
   ],
-  avatar:{
-    type:String
+  avatar: {
+    type: String
   }
-  
 });
 
-MentorSchema.index({'$**': 'text'});
+MentorSchema.index({ "$**": "text" });
 
 module.exports = User = mongoose.model("mentor", MentorSchema);

@@ -1,20 +1,20 @@
-import React ,{useState}from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {Link,Redirect} from "react-router-dom"
-import {setValidation} from "../../actions/validation"
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import {register} from "../../actions/auth"
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { Link, Redirect } from "react-router-dom";
+import { setValidation } from "../../actions/validation";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { register } from "../../actions/auth";
 
 // function Google() {
 //   return (
@@ -24,61 +24,58 @@ import {register} from "../../actions/auth"
 //   );
 // }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
-const SignUp= ({setValidation,register,isAuthenticated})=> {
+const SignUp = ({ setValidation, register, isAuthenticated }) => {
   const classes = useStyles();
 
+  const [formData, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: ""
+  });
 
-  const [formData,setForm] = useState({
-    name:'',
-    email:'',
-    password:'',
-    password2:''
-  })
-   
-  const {name,email,password,password2} = formData
+  const { name, email, password, password2 } = formData;
 
   // onchange
-  const onChange =(e)=>{
-      setForm({...formData,[e.target.name]:e.target.value})
-  }
+  const onChange = e => {
+    setForm({ ...formData, [e.target.name]: e.target.value });
+  };
 
   // submit data
-  const onSubmit = async(e) =>{
-    e.preventDefault()
-    console.log(password2,password)
-    if(password !== password2){
-    setValidation('Password not match','error')
+  const onSubmit = async e => {
+    e.preventDefault();
+    console.log(password2, password);
+    if (password !== password2) {
+      setValidation("Password not match", "error");
+    } else {
+      register({ name, email, password });
     }
-    else{
-      register({name,email,password})
-
-    }
-  }
-  if (isAuthenticated){
-    return <Redirect to="/dashboard"/>
+  };
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
   }
   return (
-    <Container component="main" maxWidth="xs" >
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -89,7 +86,7 @@ const SignUp= ({setValidation,register,isAuthenticated})=> {
         </Typography>
         <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -101,7 +98,7 @@ const SignUp= ({setValidation,register,isAuthenticated})=> {
             autoFocus
           />
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -113,7 +110,7 @@ const SignUp= ({setValidation,register,isAuthenticated})=> {
             id="email"
           />
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -125,7 +122,7 @@ const SignUp= ({setValidation,register,isAuthenticated})=> {
             onChange={onChange}
           />
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -166,22 +163,18 @@ const SignUp= ({setValidation,register,isAuthenticated})=> {
       {/* <Box mt={6}>
         <Google />
       </Box> */}
-      
     </Container>
   );
-}
+};
 
 SignUp.propTypes = {
   setValidation: PropTypes.func.isRequired,
-  register:PropTypes.func.isRequired,
-  isAuthenticated:PropTypes.bool,
-
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state =>({
-  isAuthenticated:state.register.isAuthenticated
-})
+const mapStateToProps = state => ({
+  isAuthenticated: state.register.isAuthenticated
+});
 
-
-
-export default connect(mapStateToProps,{setValidation,register}) (SignUp)
+export default connect(mapStateToProps, { setValidation, register })(SignUp);

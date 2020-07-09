@@ -1,10 +1,10 @@
-import React from 'react'
-import ListMentors from "../ListMentors/ListMentors"
+import React from "react";
+import ListMentors from "../ListMentors/ListMentors";
 
 export default function Mentors() {
-    return (
-        <div>
-            <ListMentors/>
-        </div>
-    )
+  return (
+    <div>
+      <ListMentors />
+    </div>
+  );
 }

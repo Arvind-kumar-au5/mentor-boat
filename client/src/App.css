@@ -6,19 +6,15 @@
   --success-color: #28a745;
 }
 
-
 /* font */
 body {
-  font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-  
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto, Helvetica,
+    Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
 }
 .section-grey {
   background-color: #f8f8f8;
   min-height: calc(100vh - 140px);
 }
-
-
-
 
 .mentor {
   color: #fff;
@@ -28,10 +24,10 @@ body {
   border: none;
   border-radius: 3px;
   vertical-align: middle;
-  -webkit-transition: background-color .5s ease;
-  -moz-transition: background-color .5s ease;
-  -o-transition: background-color .5s ease;
-  transition: background-color .5s ease;
+  -webkit-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
   font-size: 1em;
   padding: 20px 16px;
 }
@@ -60,13 +56,12 @@ body {
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
 }
-
 
 ul {
   list-style: none;
@@ -223,7 +218,6 @@ img {
   color: #fff;
 }
 
-
 .btn-danger,
 .bg-danger,
 .badge-danger,
@@ -289,10 +283,10 @@ img {
   color: #888;
 }
 
-.form input[type='text'],
-.form input[type='email'],
-.form input[type='password'],
-.form input[type='date'],
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
 .form select,
 .form textarea {
   display: block;
@@ -302,7 +296,7 @@ img {
   border: 1px solid #ccc;
 }
 
-.form input[type='submit'],
+.form input[type="submit"],
 button {
   font: inherit;
 }
@@ -375,11 +369,10 @@ button {
 }
 
 /* signup */
-.signup{
+.signup {
   position: relative;
-  background: url('./image/signup.jpg') no-repeat center center/cover;
+  background: url("./image/signup.jpg") no-repeat center center/cover;
   height: 100vh;
-
 }
 
 /* Landing Page */
@@ -415,10 +408,10 @@ button {
 .profile-grid {
   display: grid;
   grid-template-areas:
-    'top top'
-    'about about'
-    'exp edu'
-    'github github';
+    "top top"
+    "about about"
+    "exp edu"
+    "github github";
   grid-gap: 1rem;
 }
 
@@ -557,8 +550,8 @@ button {
   .large {
     font-size: 2rem;
   }
-  .text-color{
-    color: #304160!important;
+  .text-color {
+    color: #304160 !important;
   }
 
   .lead {
@@ -604,11 +597,11 @@ button {
 
   .profile-grid {
     grid-template-areas:
-      'top'
-      'about'
-      'exp'
-      'edu'
-      'github';
+      "top"
+      "about"
+      "exp"
+      "edu"
+      "github";
   }
 
   .profile-about .skills {
@@ -639,27 +632,22 @@ button {
   position: fixed;
   height: auto;
   overflow: auto;
-  
 }
 
 .sidebar a {
   display: block;
   color: black;
-  background-color: #F7F8FA;
+  background-color: #f7f8fa;
   padding: 16px;
   text-decoration: none;
 }
- 
+
 .sidebar a.active {
   border-left: 3px solid black;
-  
-  
 }
 
-
 .sidebar a:hover:not(.active) {
-  background-color: #F7F8FA;
-  
+  background-color: #f7f8fa;
 }
 
 div.content {
@@ -675,8 +663,12 @@ div.content {
     height: auto;
     position: relative;
   }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -691,17 +683,15 @@ a {
   color: inherit;
 }
 
-
 /* File Upload */
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
   display: block;
-  color:#baabc9
+  color: #baabc9;
 }
 
-
-.upload-btn-wrapper input[type=file] {
+.upload-btn-wrapper input[type="file"] {
   font-size: 100px;
   position: absolute;
   left: 0;
@@ -715,24 +705,21 @@ a {
   border-radius: 50%;
 }
 
-
-
 div {
   display: block;
-  
 }
-  
-  .image.is-96x96 {
+
+.image.is-96x96 {
   height: 96px;
   width: 96px;
 }
 .image.is-round img {
   position: relative;
   margin-top: 20px;
-  margin-left:10px;
+  margin-left: 10px;
   background: #fff;
-  height:160px;
-  width:160px;
+  height: 160px;
+  width: 160px;
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;
@@ -752,13 +739,11 @@ div .name {
   left: 20px;
   font-size: 18px;
   display: inline;
- 
 }
 
-span.user-name{
+span.user-name {
   margin-top: -87px;
   margin-left: -3px;
-
 }
 
 .image img {
@@ -766,29 +751,26 @@ span.user-name{
   width: 100%;
 }
 
-h2{
- font-size: calc(0.75em + 1vmin);
-  margin-bottom: .5714em;
- 
+h2 {
+  font-size: calc(0.75em + 1vmin);
+  margin-bottom: 0.5714em;
 }
 
 .profile-background-image--loading {
-  background: url('./image/ember.jpg') 60%/cover;
+  background: url("./image/ember.jpg") 60% / cover;
 }
 .profile-background-image {
   position: relative;
   width: 100%;
   padding-bottom: 22%;
 }
- @media screen and (min-width: 601px) {
-.profile-background-image{
+@media screen and (min-width: 601px) {
+  .profile-background-image {
     position: relative;
     width: 100%;
     padding-bottom: 25%;
   }
-
 }
-
 
 /* Media 
  */
@@ -799,37 +781,28 @@ h2{
     width: 120px;
     margin-top: -10px;
   }
-  h2{
+  h2 {
     display: inline;
   }
   div .pro {
     width: 100%;
   }
-
 }
 
 @media screen and (min-width: 601px) {
-  div .edit{
+  div .edit {
     margin-bottom: -220px;
-   
-    
   }
-
 }
 
-
- 
 @media screen and (max-width: 600px) {
-  div .edit{
+  div .edit {
     margin-top: -250px;
-   
-    
   }
-  
-}  
+}
 
-
-textarea, .v3 input[type=textarea] {
+textarea,
+.v3 input[type="textarea"] {
   -webkit-appearance: none;
   width: 100%;
   padding: 5px 15px;
@@ -837,32 +810,28 @@ textarea, .v3 input[type=textarea] {
   background: #f8f9fb;
   color: #304160;
   font-size: 17px;
-  border-radius: 5px!important;
-  border: 2px solid #e7edf3!important;
+  border-radius: 5px !important;
+  border: 2px solid #e7edf3 !important;
 }
 
 @media screen and (max-width: 600px) {
-  div .detail{
+  div .detail {
     margin-top: -210px;
-    height:auto   
+    height: auto;
   }
-  
-}  
+}
 
 @media screen and (min-width: 601px) {
-  div .detail{
-    height:auto   
+  div .detail {
+    height: auto;
   }
-  
-}  
+}
 
 @media screen and (max-width: 1800px) {
-  div .detail{
-    width:auto   
+  div .detail {
+    width: auto;
   }
-  
-}  
-
+}
 
 /* @media (max-width: 767px) {
   #my-input { 
@@ -881,10 +850,9 @@ main > .container {
   padding: 60px 15px 0;
 }
 
-@media screen and (max-width: 768px){
-
+@media screen and (max-width: 768px) {
   #home-search {
-      text-align: center;
+    text-align: center;
   }
 }
 #home-search {
@@ -896,34 +864,38 @@ main > .container {
   border-radius: 4px;
   position: relative;
 }
-@media screen and (max-width: 768px){
-
+@media screen and (max-width: 768px) {
   #home-search input {
-      width: 100%;
+    width: 100%;
   }
 }
-@media screen and (max-width: 768px){
-
+@media screen and (max-width: 768px) {
   #home-search input {
-      border-bottom: 1px solid #fff;
-      margin-bottom: 10px;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 10px;
   }
 }
 #home-search input {
   display: inline-block;
- 
+
   background: 0 0;
   padding: 8px 2px;
   width: calc(100% - 200px);
   font-size: 1.05rem;
 }
-body, button, input, select, textarea {
-  font-family: BlinkMacSystemFont,-apple-system,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,fira sans,droid sans,helvetica neue,Helvetica,Arial,sans-serif;
+body,
+button,
+input,
+select,
+textarea {
+  font-family: BlinkMacSystemFont, -apple-system, segoe ui, Roboto, Oxygen,
+    Ubuntu, Cantarell, fira sans, droid sans, helvetica neue, Helvetica, Arial,
+    sans-serif;
 }
 #home-search button {
   width: 190px;
   height: 48px;
-  background-color: #007bff!important;
+  background-color: #007bff !important;
   border: none;
   border-radius: 3px;
   font-weight: 700;
@@ -934,16 +906,17 @@ body, button, input, select, textarea {
   margin-left: 10px;
 }
 
-.title-blue, .text-blue {
-  color: #304160!important;
+.title-blue,
+.text-blue {
+  color: #304160 !important;
 }
 .nametag {
-  font-weight: 600!important;
-  font-size: 1.75rem!important;
-  margin-bottom: 5px!important;
+  font-weight: 600 !important;
+  font-size: 1.75rem !important;
+  margin-bottom: 5px !important;
 }
 .has-text-grey {
-  color: #7a7a7a!important;
+  color: #7a7a7a !important;
 }
 
 .tags {
@@ -974,26 +947,27 @@ body, button, input, select, textarea {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  font-size: .75rem;
+  font-size: 0.75rem;
   height: 2em;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   line-height: 1.5;
-  padding-left: .75em;
-  padding-right: .75em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
   white-space: nowrap;
 }
-.landing{
-  width: 500px; 
-  height: 527.517px; 
-  transition: none 0s ease 0s; 
-  text-align: inherit; 
-  line-height: 0px; 
-  border-width: 0px; 
-  margin: 0px; padding: 0px; 
-  letter-spacing: 0px; 
-  font-weight: 400; 
+.landing {
+  width: 500px;
+  height: 527.517px;
+  transition: none 0s ease 0s;
+  text-align: inherit;
+  line-height: 0px;
+  border-width: 0px;
+  margin: 0px;
+  padding: 0px;
+  letter-spacing: 0px;
+  font-weight: 400;
   font-size: 13px;
   animation-name: landing;
   animation-duration: 3s;
@@ -1001,28 +975,32 @@ body, button, input, select, textarea {
   animation-timing-function: ease-in-out;
   margin-left: 30px;
   margin-top: 5px;
-
 }
 
-.study{
-  width: 300px; 
-  height: 327.517px; 
-  transition: none 0s ease 0s; 
-  text-align: inherit; 
-  line-height: 0px; 
-  border-width: 0px; 
-  margin: 0px; padding: 0px; 
-  letter-spacing: 0px; 
-  font-weight: 400; 
+.study {
+  width: 300px;
+  height: 327.517px;
+  transition: none 0s ease 0s;
+  text-align: inherit;
+  line-height: 0px;
+  border-width: 0px;
+  margin: 0px;
+  padding: 0px;
+  letter-spacing: 0px;
+  font-weight: 400;
   font-size: 13px;
- 
-
 }
 
 @keyframes landing {
-  from { transform: translate(0,  0px); }
-  65%  { transform: translate(0, 25px); }
-  to   { transform: translate(0, -0px); }    
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 25px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
 }
 
 .text-cta {
@@ -1032,7 +1010,6 @@ body, button, input, select, textarea {
   font-size: 15px;
   text-decoration: underline;
   margin-left: 5px;
-
 }
 #price-indicator-detail {
   font-size: 32px;
@@ -1048,34 +1025,26 @@ body, button, input, select, textarea {
   font-size: 1.1rem;
 }
 
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
   color: #09529b !important;
-
-
 }
-.slick-prev:before{
+.slick-prev:before {
   color: #09529b !important;
   margin-left: 9px;
 }
-.slick-next:before{
+.slick-next:before {
   color: #09529b !important;
   margin-left: -20px;
 }
 
 .slick-dots:before {
   color: #09529b !important;
-
 }
-.scroll-area{
-  width:100%;
-  height:calc(100% - 200px);
-  margin-top:100px;
-  float:left;
-  overflow-y:scroll;
+.scroll-area {
+  width: 100%;
+  height: calc(100% - 200px);
+  margin-top: 100px;
+  float: left;
+  overflow-y: scroll;
 }
-
-
-
-
-
-

@@ -1,86 +1,83 @@
-import React, {useState} from'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {Link,Redirect} from "react-router-dom"
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { Link, Redirect } from "react-router-dom";
 
-// Redux 
-import {connect} from "react-redux"
-import { mentorLogin } from '../../actions/MentorAuth';
+// Redux
+import { connect } from "react-redux";
+import { mentorLogin } from "../../actions/MentorAuth";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Mentor Boat
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
-function MentorLogin({mentorLogin,misAuthenticated}) {
+function MentorLogin({ mentorLogin, misAuthenticated }) {
   const classes = useStyles();
 
-  // Hooks 
+  // Hooks
   const [formData, setformData] = useState({
-    email:'',
-    password:'',
-    
+    email: "",
+    password: ""
+  });
 
-  })
+  const { email, password } = formData;
 
-  const {email,password} = formData
+  // OnChnage
+  const onChnage = e => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  // OnChnage 
-  const onChnage = (e)=>{
-    setformData({...formData,[e.target.name]:e.target.value})
+  // Onsubmit
+
+  const onSubmit = e => {
+    e.preventDefault();
+    mentorLogin(email, password);
+  };
+
+  // Authenticated
+  if (misAuthenticated) {
+    return <Redirect to="/mentor/dashboard" />;
   }
-
-  // Onsubmit 
-
-  const onSubmit = (e)=>{
-    e.preventDefault()
-    mentorLogin(email,password)
-  }
-
-  // Authenticated 
-  if (misAuthenticated){
-      return <Redirect to="/mentor/dashboard"/>
-  }
-
 
   return (
     <Container component="main" maxWidth="xs">
@@ -92,10 +89,9 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
         <Typography component="h1" variant="h5">
           Sign In as a Mentor
         </Typography>
-        <form className={classes.form} noValidate onSubmit= {onSubmit}>
-         
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -103,11 +99,11 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
             label="email;"
             type="email"
             id="email"
-            value = {email}
-            onChange = {onChnage}
+            value={email}
+            onChange={onChnage}
           />
           <TextField
-            variant = "outlined"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -115,10 +111,10 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
             label="password;"
             type="password"
             id="password"
-            value = {password}
-            onChange = {onChnage}
+            value={password}
+            onChange={onChnage}
           />
-         
+
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -130,7 +126,7 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
             color="primary"
             className={classes.submit}
           >
-            Sign In 
+            Sign In
           </Button>
           <Grid container>
             <Grid item xs>
@@ -149,22 +145,17 @@ function MentorLogin({mentorLogin,misAuthenticated}) {
       <Box mt={8}>
         <Copyright />
       </Box>
-     
     </Container>
   );
 }
 
 MentorLogin.propTypes = {
-  
-  mentorLogin:PropTypes.func.isRequired,
-  misAuthenticated:PropTypes.bool,
-
+  mentorLogin: PropTypes.func.isRequired,
+  misAuthenticated: PropTypes.bool
 };
 
-const mapStateToProps = state =>({
-  misAuthenticated:state.mentor.misAuthenticated
-})
+const mapStateToProps = state => ({
+  misAuthenticated: state.mentor.misAuthenticated
+});
 
-
-
-export default connect(mapStateToProps,{mentorLogin}) (MentorLogin);
+export default connect(mapStateToProps, { mentorLogin })(MentorLogin);

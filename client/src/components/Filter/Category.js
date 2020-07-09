@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Category() {
-    return (
-        <div>
-            Connected
-        </div>
-    )
+  return <div>Connected</div>;
 }

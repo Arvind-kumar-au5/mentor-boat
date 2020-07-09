@@ -4,25 +4,22 @@ const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const keys = require("../config/keys");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const passport = require('passport')
-
-
+const passport = require("passport");
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = keys.secretOrKey;
 
-
 // Google Oauth
-passport.serializeUser((user,done)=>{
-  done(null,user.id)
-})
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-passport.deserializeUser((id,done)=>{
-  User.findById(id).then((user)=>{
-      done(null,user)
-  })
-})
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
 
 // Our App Login /signup
 module.exports = passport => {
@@ -39,31 +36,32 @@ module.exports = passport => {
     })
   );
 
-  // For google Authentication 
+  // For google Authentication
   passport.use(
-    new GoogleStrategy({
-      clientID:keys.googleCientID,
-      clientSecret:keys.googleClientSecret,
-      callbackURL:"/api/users/auth/google/callback",
-    },(accessToken, refreshToken, profile,done)=>{
-      User.findOne({googleId:profile.id})
-     .then((existingUser)=>{
-          if(existingUser){
-              done(null,existingUser)
-          }else{
-               new User({
-                   googleId:profile.id,
-                   name:profile._json.name,
-                   avatar:profile._json.picture,
-                   email:profile._json.email
-                
-                }).save()
-               .then((user)=>{
-                   done(null,user)
-               })
+    new GoogleStrategy(
+      {
+        clientID: keys.googleCientID,
+        clientSecret: keys.googleClientSecret,
+        callbackURL: "/api/users/auth/google/callback"
+      },
+      (accessToken, refreshToken, profile, done) => {
+        User.findOne({ googleId: profile.id }).then(existingUser => {
+          if (existingUser) {
+            done(null, existingUser);
+          } else {
+            new User({
+              googleId: profile.id,
+              name: profile._json.name,
+              avatar: profile._json.picture,
+              email: profile._json.email
+            })
+              .save()
+              .then(user => {
+                done(null, user);
+              });
           }
-     })
-      
-    })
-  )
+        });
+      }
+    )
+  );
 };
