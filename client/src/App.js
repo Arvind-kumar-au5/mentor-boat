@@ -37,7 +37,7 @@ import Request from "./components/MentorDashboard/Request";
 import setAuthToken from "./utils/SetToken";
 // import Category from "./components/Filter/Category"
 import AboutUs from "./components/Layout/AboutUs";
-import Zoom from "./components/MentorDashboard/Zoom/Zoom";
+
 
 function App() {
   useEffect(() => {
@@ -99,7 +99,7 @@ function App() {
               <MentorRoute exact path="/request" component={Request} />
               {/* <Route exact path = "/mentor/:category" component = {Category}/> */}
               <Route exact path="/about" component={AboutUs} />
-              <Route exact path="/zoom" component={Zoom} />
+        
 
               <Route component={NotFound} />
             </Switch>
