@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import axios from "axios";
 import SearchItem from "./SearchItem";
+import Skeleton from "../Layout/Skeleton"
 
 export default function SearchResult({ match, location }) {
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function SearchResult({ match, location }) {
             <SearchItem key={profile._id} profile={profile} />
           ))
         ) : (
-          <h4>Loading...</h4>
+          <Skeleton/>
         )}
       </div>
     </Fragment>

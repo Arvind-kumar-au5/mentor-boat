@@ -4,6 +4,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+
 const SearchItem = ({ profile, isAuthenticated }) => {
   return (
     <Fragment>

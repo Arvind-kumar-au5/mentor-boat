@@ -6,6 +6,7 @@ import Spinner from "../Layout/Spinner";
 import ProfileItem from "./ProfileItem";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import Skeleton from "../Layout/Skeleton"
 
 function ListMentors({ getProfiles, profile: { profiles, loading } }) {
   console.log(profiles);
